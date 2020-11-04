@@ -1,0 +1,17 @@
+<ng-container class="authentication-container">
+  <carousel class="carousel" [interval]="3000" [noPause]="true" [pauseOnFocus]="false" [isAnimated]="true">
+    <slide>
+      <img src="assets/images/slider-img-01.jpg" alt="first slide" style="display: block; width: 100%;">
+    </slide>
+    <slide>
+      <img src="assets/images/slider-img-02.jpg" alt="second slide" style="display: block; width: 100%;">
+    </slide>
+    <slide>
+      <img src="assets/images/slider-img-03.jpg" alt="third slide" style="display: block; width: 100%;">
+    </slide>
+  </carousel>
+
+  <div class="authentication-form-container d-flex flex-column align-items-center">
+    <router-outlet></router-outlet>
+  </div>
+</ng-container>
