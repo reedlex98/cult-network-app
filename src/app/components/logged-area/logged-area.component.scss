@@ -1,0 +1,34 @@
+.logged-area-aside-menu{
+  width: 300px;
+  height: 100vh;
+  position: sticky;
+  background: rgb(22, 18, 29);
+  color: #e5e4f0;
+  .cult-network-logo{
+    margin: 50px 0;
+    font-size: 2em;
+    font-weight: bold;
+    .logo-dot{
+      color: #3BB370
+    }
+  }
+  .menu-options{
+    width: 100%;
+    list-style: none;
+    padding: 0;
+    .option{
+      display: flex;
+      width: 100%;
+      padding: 0 10px;
+      height: 50px;
+      transition: background .25s linear;
+      &:hover{
+        background-color: #3BB370	;
+      }
+      align-items: center;
+      span{
+        margin-left: 10px;
+      }
+    }
+  }
+}

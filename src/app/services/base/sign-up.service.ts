@@ -1,7 +1,6 @@
 // Dependencies
 import { Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
-import { catchError, map, retry } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 // DTOs
 import { SignUpResponse } from '../dto/sign-up.response';
@@ -9,7 +8,6 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { PasswordValidator } from '../util/validators/password-validator';
 import { SignUpForm } from '../dto/sign-up-form';
 import { ApiLivrosProxyService } from '../proxy/api-livros-proxy.service';
-import { HttpResponse } from '@angular/common/http';
 import { UfService } from '../util/services/uf.service';
 import { Uf } from '../dto/uf';
 
@@ -74,6 +72,26 @@ export class SignUpService {
         message: 'O campo deve ter no mínimo 2 caracteres'
       }
     ],
+    idade: [
+      {
+        type: 'required',
+        message: 'Campo obrigatório'
+      }
+    ],
+    endereco: [
+      {
+        type: 'required',
+        message: 'Campo obrigatório'
+      },
+      {
+        type: 'minlength',
+        message: 'O campo deve ter no mínimo 6 caracteres'
+      },
+      {
+        type: 'maxlength',
+        message: 'O campo deve ter no mínimo 150 caracteres'
+      }
+    ],
     senha: [
       {
         type: 'required',
@@ -130,6 +148,12 @@ export class SignUpService {
             Validators.minLength(6),
             Validators.maxLength(60)])
         ),
+        idade: new FormControl(
+          '',
+          Validators.compose([
+            Validators.required
+          ])
+        ),
         senha: new FormControl(
           '',
           Validators.compose([
@@ -140,6 +164,13 @@ export class SignUpService {
             PasswordValidator.minNumberChar,
             PasswordValidator.minSpecialChar,
             PasswordValidator.hasEmptySpace])
+        ),
+        endereco: new FormControl(
+          '',
+          Validators.compose([
+            Validators.required,
+            Validators.minLength(6),
+            Validators.maxLength(150)])
         ),
         cidade: new FormControl(
           '',
@@ -162,6 +193,16 @@ export class SignUpService {
             Validators.maxLength(60),
             Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}'),
           ])
+        ),
+        latitude: new FormControl(
+          '',
+          Validators.compose([
+          ])
+        ),
+        longitude: new FormControl(
+          '',
+          Validators.compose([
+          ])
         )
       }
     )
@@ -169,14 +210,8 @@ export class SignUpService {
   }
 
   public signUp(signUpForm: SignUpForm) : Observable<SignUpResponse> {
-    console.log("here, signupservice")
     return this.apiLivrosProxyService
       .signUp(signUpForm)
-      .pipe(
-        map(res => {
-          return res
-        })
-      )
   }
 
 }

@@ -3,13 +3,26 @@
 
   <p class="h4 mb-4">Crie uma nova conta</p>
 
-  <!-- Username -->
+  <!-- Nome -->
   <div class="form-row mb-4">
     <input type="text" formControlName="nome" id="defaultRegisterFormName" aria-describedby="defaultRegisterFormNameHelpBlock" [ngClass]="{'is-valid': signUpForm.get('nome').valid, 'is-invalid': (!signUpForm.get('nome').valid && signUpForm.get('nome').touched)}"  class="form-control" placeholder="Nome de usuário">
     <div class="mt-1 w-100 d-flex flex-column align-items-center">
       <ng-container *ngFor="let error of errorMessages.nome">
         <small class="d-block text-danger" id="defaultRegisterFormNameHelpBlock"
           *ngIf="signUpForm.get('nome').hasError(error.type) && (signUpForm.get('nome').dirty || signUpForm.get('nome').touched)">
+          {{error.message}}
+        </small>
+      </ng-container>
+    </div>
+  </div>
+
+  <!-- Idade -->
+  <div class="form-row mb-4">
+    <input type="number" min="12" formControlName="idade" id="defaultRegisterFormAge" aria-describedby="defaultRegisterFormAgeHelpBlock" [ngClass]="{'is-valid': signUpForm.get('idade').valid, 'is-invalid': (!signUpForm.get('idade').valid && signUpForm.get('idade').touched)}"  class="form-control" placeholder="Nome de usuário">
+    <div class="mt-1 w-100 d-flex flex-column align-items-center">
+      <ng-container *ngFor="let error of errorMessages.idade">
+        <small class="d-block text-danger" id="defaultRegisterFormAgeHelpBlock"
+          *ngIf="signUpForm.get('idade').hasError(error.type) && (signUpForm.get('idade').dirty || signUpForm.get('idade').touched)">
           {{error.message}}
         </small>
       </ng-container>
@@ -29,13 +42,26 @@
     </div>
   </div>
 
-  <!-- Password -->
+  <!-- Senha -->
   <div class="form-row mb-4">
     <input type="password" formControlName="senha" id="defaultRegisterFormPassword" [ngClass]="{'is-valid': signUpForm.get('senha').valid, 'is-invalid': (!signUpForm.get('senha').valid && signUpForm.get('senha').touched)}" class="form-control" placeholder="Senha" aria-describedby="defaultRegisterFormPasswordHelpBlock">
     <div class="mt-1 w-100 d-flex flex-column align-items-center">
       <ng-container *ngFor="let error of errorMessages.senha">
         <small id="defaultRegisterFormPasswordHelpBlock" class="d-block text-danger"
           *ngIf="signUpForm.get('senha').hasError(error.type) && (signUpForm.get('senha').dirty || signUpForm.get('senha').touched)">
+          {{error.message}}
+        </small>
+      </ng-container>
+    </div>
+  </div>
+
+  <!-- Endereco -->
+  <div class="form-row mb-4">
+    <input type="tel" formControlName="endereco" id="defaultRegisterFormAddress" [ngClass]="{'is-valid': signUpForm.get('endereco').valid, 'is-invalid': (!signUpForm.get('endereco').valid && signUpForm.get('endereco').touched)}" class="form-control" placeholder="Endereco" aria-describedby="defaultRegisterFormAddressHelpBlock">
+    <div class="mt-1 w-100 d-flex flex-column align-items-center">
+      <ng-container *ngFor="let error of errorMessages.endereco">
+        <small id="defaultRegisterFormAddressHelpBlock" class="d-block text-danger"
+          *ngIf="signUpForm.get('endereco').hasError(error.type) && (signUpForm.get('endereco').dirty || signUpForm.get('endereco').touched)">
           {{error.message}}
         </small>
       </ng-container>

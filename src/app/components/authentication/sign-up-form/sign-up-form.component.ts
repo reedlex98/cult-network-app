@@ -16,6 +16,7 @@ export class SignUpFormComponent implements OnInit {
   public signUpForm: FormGroup
   public errorMessages: any
   public listUf: Uf[]
+  public userPosition: any
 
   constructor(private signUpService: SignUpService){
 
@@ -25,16 +26,29 @@ export class SignUpFormComponent implements OnInit {
     this.signUpForm = this.signUpService.getSignUpForm()
     this.errorMessages = this.signUpService.getErrorMessages()
     this.listUf = this.signUpService.getListUf()
-    console.log(this.signUpForm)
+    this.findMe()
+  }
+
+  findMe() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        this.userPosition = position;
+        this.signUpForm.patchValue({
+          "latitude":  this.userPosition.coords.latitude,
+          "longitude":  this.userPosition.coords.longitude
+        })
+      });
+    } else {
+      alert("Geolocation is not supported by this browser.");
+    }
   }
 
   signUp(){
     console.log("here")
-    this.signUpService.signUp(this.signUpForm.getRawValue())
-      .pipe(
-        tap(res => {
-          console.log(res)
-        })
-      )
+    this.signUpService.signUp(this.signUpForm.value)
+      .subscribe(res => {
+        console.log(this.signUpForm.value)
+        console.log(res)
+      })
   }
 }
