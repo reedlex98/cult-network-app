@@ -1,10 +1,19 @@
 import { NgModule } from '@angular/core';
+
+// Dependecies
 import { HttpClientModule } from '@angular/common/http';
-import { ApiLivrosProxyService } from './proxy/api-livros-proxy.service'
-import { SignUpService } from './base/sign-up.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+// Proxy services
+import { ApiLivrosProxyService } from './proxy/api-livros-proxy.service'
+
+// Util
 import { UfService } from './util/services/uf.service';
+
+// Base services
+import { SignUpService } from './base/sign-up.service';
+import { SignInService } from './base/sign-in.service';
 
 @NgModule({
   imports: [
@@ -16,7 +25,8 @@ import { UfService } from './util/services/uf.service';
   providers: [
     ApiLivrosProxyService,
     UfService,
-    SignUpService
+    SignUpService,
+    SignInService
   ],
 })
 export class ServicesModule { }

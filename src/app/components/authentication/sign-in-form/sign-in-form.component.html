@@ -1,35 +1,83 @@
 <!-- Default form login -->
-<form class="text-center border border-light p-5" action="#!">
-
+<form class="text-center border border-light p-5" [formGroup]="signInForm">
   <p class="h4 mb-4">Entre no Cult Network</p>
 
-  <!-- Email -->
-  <input type="email" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="E-mail">
+  <!-- Username -->
+  <div class="form-row mb-4">
+    <input
+      type="text"
+      formControlName="username"
+      id="defaultRegisterFormName"
+      aria-describedby="defaultRegisterFormNameHelpBlock"
+      [ngClass]="{
+        'is-valid': signInForm.get('username').valid,
+        'is-invalid':
+          !signInForm.get('username').valid && signInForm.get('username').touched
+      }"
+      class="form-control"
+      placeholder="Usuário"
+    />
+    <div class="mt-1 w-100 d-flex flex-column align-items-center">
+      <ng-container *ngFor="let error of errorMessages.username">
+        <small
+          class="d-block text-danger"
+          id="defaultRegisterFormNameHelpBlock"
+          *ngIf="
+            signInForm.get('username').hasError(error.type) &&
+            (signInForm.get('username').dirty || signInForm.get('username').touched)
+          "
+        >
+          {{ error.message }}
+        </small>
+      </ng-container>
+    </div>
+  </div>
 
   <!-- Password -->
-  <input type="password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password">
+  <div class="form-row mb-4">
+    <input
+      type="password"
+      formControlName="password"
+      id="defaultRegisterFormPassword"
+      [ngClass]="{
+        'is-valid': signInForm.get('password').valid,
+        'is-invalid':
+          !signInForm.get('password').valid && signInForm.get('password').touched
+      }"
+      class="form-control"
+      placeholder="Senha"
+      aria-describedby="defaultRegisterFormPasswordHelpBlock"
+    />
+    <div class="mt-1 w-100 d-flex flex-column align-items-center">
+      <ng-container *ngFor="let error of errorMessages.password">
+        <small
+          id="defaultRegisterFormPasswordHelpBlock"
+          class="d-block text-danger"
+          *ngIf="
+            signInForm.get('password').hasError(error.type) &&
+            (signInForm.get('password').dirty || signInForm.get('password').touched)
+          "
+        >
+          {{ error.message }}
+        </small>
+      </ng-container>
+    </div>
+  </div>
 
   <div class="d-flex justify-content-around">
-      <div>
-          <!-- Remember me -->
-          <div class="custom-control custom-checkbox">
-              <input type="checkbox" class="custom-control-input" id="defaultLoginFormRemember">
-              <label class="custom-control-label" for="defaultLoginFormRemember">Remember me</label>
-          </div>
-      </div>
-      <div>
-          <!-- Forgot password -->
-          <a href="">Esqueceu sua senha?</a>
-      </div>
+    <div>
+      <!-- Forgot password -->
+      <a href="">Esqueceu sua senha?</a>
+    </div>
   </div>
 
   <!-- Sign in button -->
-  <button class="btn btn-info btn-block my-4" type="submit">Entrar</button>
+  <button class="btn btn-info btn-block my-4" (click)="signIn()" type="submit">Entrar</button>
 
   <!-- Register -->
-  <p>Ainda não é um membro?
-      <a href="">Cadastre-se</a>
+  <p>
+    Ainda não é um membro?
+    <a [routerLink]="['/auth/sign-up']">Cadastre-se</a>
   </p>
-
 </form>
 <!-- Default form login -->

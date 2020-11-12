@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { SignUpService } from 'src/app/services/base/sign-up.service';
-import { SignUpForm } from 'src/app/services/dto/sign-up-form';
+import { tap } from 'rxjs/operators';
+import { SignInService } from 'src/app/services/base/sign-in.service';
+import { SignInForm } from 'src/app/services/dto/sign-in-form';
 import { Uf } from 'src/app/services/dto/uf';
 
 
@@ -12,18 +13,24 @@ import { Uf } from 'src/app/services/dto/uf';
   styleUrls: ['./sign-in-form.component.scss']
 })
 export class SignInFormComponent implements OnInit {
-  public signUpForm: FormGroup
-  public errorMessages: any
-  public listUf: Uf[]
+  public signInForm: FormGroup;
+  public errorMessages: any;
+  public listUf: Uf[];
 
-  constructor(private signUpService: SignUpService){
+  constructor(private signInService: SignInService){
 
   }
 
   ngOnInit(){
-    this.signUpForm = this.signUpService.getSignUpForm()
-    this.errorMessages = this.signUpService.getErrorMessages()
-    this.listUf = this.signUpService.getListUf()
-    console.log(this.signUpForm)
+    this.signInForm = this.signInService.getSignInForm();
+    this.errorMessages = this.signInService.getErrorMessages();
+    console.log(this.signInForm);
+  }
+
+  signIn(){
+    this.signInService.signIn(this.signInForm.value)
+      .subscribe(res => {
+        console.log(res)
+      });
   }
 }

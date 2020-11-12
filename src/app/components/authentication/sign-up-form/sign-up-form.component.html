@@ -1,16 +1,33 @@
 <!-- Default form register -->
 <form class="text-center border border-light p-5" [formGroup]="signUpForm">
-
   <p class="h4 mb-4">Crie uma nova conta</p>
 
   <!-- Nome -->
   <div class="form-row mb-4">
-    <input type="text" formControlName="nome" id="defaultRegisterFormName" aria-describedby="defaultRegisterFormNameHelpBlock" [ngClass]="{'is-valid': signUpForm.get('nome').valid, 'is-invalid': (!signUpForm.get('nome').valid && signUpForm.get('nome').touched)}"  class="form-control" placeholder="Nome de usuário">
+    <input
+      type="text"
+      formControlName="nome"
+      id="defaultRegisterFormName"
+      aria-describedby="defaultRegisterFormNameHelpBlock"
+      [ngClass]="{
+        'is-valid': signUpForm.get('nome').valid,
+        'is-invalid':
+          !signUpForm.get('nome').valid && signUpForm.get('nome').touched
+      }"
+      class="form-control"
+      placeholder="Nome de usuário"
+    />
     <div class="mt-1 w-100 d-flex flex-column align-items-center">
       <ng-container *ngFor="let error of errorMessages.nome">
-        <small class="d-block text-danger" id="defaultRegisterFormNameHelpBlock"
-          *ngIf="signUpForm.get('nome').hasError(error.type) && (signUpForm.get('nome').dirty || signUpForm.get('nome').touched)">
-          {{error.message}}
+        <small
+          class="d-block text-danger"
+          id="defaultRegisterFormNameHelpBlock"
+          *ngIf="
+            signUpForm.get('nome').hasError(error.type) &&
+            (signUpForm.get('nome').dirty || signUpForm.get('nome').touched)
+          "
+        >
+          {{ error.message }}
         </small>
       </ng-container>
     </div>
@@ -18,12 +35,31 @@
 
   <!-- Idade -->
   <div class="form-row mb-4">
-    <input type="number" min="12" formControlName="idade" id="defaultRegisterFormAge" aria-describedby="defaultRegisterFormAgeHelpBlock" [ngClass]="{'is-valid': signUpForm.get('idade').valid, 'is-invalid': (!signUpForm.get('idade').valid && signUpForm.get('idade').touched)}"  class="form-control" placeholder="Nome de usuário">
+    <input
+      type="number"
+      min="12"
+      formControlName="idade"
+      id="defaultRegisterFormAge"
+      aria-describedby="defaultRegisterFormAgeHelpBlock"
+      [ngClass]="{
+        'is-valid': signUpForm.get('idade').valid,
+        'is-invalid':
+          !signUpForm.get('idade').valid && signUpForm.get('idade').touched
+      }"
+      class="form-control"
+      placeholder="Idade"
+    />
     <div class="mt-1 w-100 d-flex flex-column align-items-center">
       <ng-container *ngFor="let error of errorMessages.idade">
-        <small class="d-block text-danger" id="defaultRegisterFormAgeHelpBlock"
-          *ngIf="signUpForm.get('idade').hasError(error.type) && (signUpForm.get('idade').dirty || signUpForm.get('idade').touched)">
-          {{error.message}}
+        <small
+          class="d-block text-danger"
+          id="defaultRegisterFormAgeHelpBlock"
+          *ngIf="
+            signUpForm.get('idade').hasError(error.type) &&
+            (signUpForm.get('idade').dirty || signUpForm.get('idade').touched)
+          "
+        >
+          {{ error.message }}
         </small>
       </ng-container>
     </div>
@@ -31,12 +67,30 @@
 
   <!-- E-mail -->
   <div class="form-row mb-4">
-    <input type="email" formControlName="email" id="defaultRegisterFormEmail" aria-describedby="defaultRegisterFormEmailHelpBlock" [ngClass]="{'is-valid': signUpForm.get('email').valid, 'is-invalid': (!signUpForm.get('email').valid && signUpForm.get('email').touched)}" class="form-control" placeholder="E-mail">
+    <input
+      type="email"
+      formControlName="email"
+      id="defaultRegisterFormEmail"
+      aria-describedby="defaultRegisterFormEmailHelpBlock"
+      [ngClass]="{
+        'is-valid': signUpForm.get('email').valid,
+        'is-invalid':
+          !signUpForm.get('email').valid && signUpForm.get('email').touched
+      }"
+      class="form-control"
+      placeholder="E-mail"
+    />
     <div class="mt-1 w-100 d-flex flex-column align-items-center">
       <ng-container *ngFor="let error of errorMessages.email">
-        <small id="defaultRegisterFormEmailHelpBlock" class="d-block text-danger"
-          *ngIf="signUpForm.get('email').hasError(error.type) && (signUpForm.get('email').dirty || signUpForm.get('email').touched)">
-          {{error.message}}
+        <small
+          id="defaultRegisterFormEmailHelpBlock"
+          class="d-block text-danger"
+          *ngIf="
+            signUpForm.get('email').hasError(error.type) &&
+            (signUpForm.get('email').dirty || signUpForm.get('email').touched)
+          "
+        >
+          {{ error.message }}
         </small>
       </ng-container>
     </div>
@@ -44,12 +98,30 @@
 
   <!-- Senha -->
   <div class="form-row mb-4">
-    <input type="password" formControlName="senha" id="defaultRegisterFormPassword" [ngClass]="{'is-valid': signUpForm.get('senha').valid, 'is-invalid': (!signUpForm.get('senha').valid && signUpForm.get('senha').touched)}" class="form-control" placeholder="Senha" aria-describedby="defaultRegisterFormPasswordHelpBlock">
+    <input
+      type="password"
+      formControlName="senha"
+      id="defaultRegisterFormPassword"
+      [ngClass]="{
+        'is-valid': signUpForm.get('senha').valid,
+        'is-invalid':
+          !signUpForm.get('senha').valid && signUpForm.get('senha').touched
+      }"
+      class="form-control"
+      placeholder="Senha"
+      aria-describedby="defaultRegisterFormPasswordHelpBlock"
+    />
     <div class="mt-1 w-100 d-flex flex-column align-items-center">
       <ng-container *ngFor="let error of errorMessages.senha">
-        <small id="defaultRegisterFormPasswordHelpBlock" class="d-block text-danger"
-          *ngIf="signUpForm.get('senha').hasError(error.type) && (signUpForm.get('senha').dirty || signUpForm.get('senha').touched)">
-          {{error.message}}
+        <small
+          id="defaultRegisterFormPasswordHelpBlock"
+          class="d-block text-danger"
+          *ngIf="
+            signUpForm.get('senha').hasError(error.type) &&
+            (signUpForm.get('senha').dirty || signUpForm.get('senha').touched)
+          "
+        >
+          {{ error.message }}
         </small>
       </ng-container>
     </div>
@@ -57,12 +129,32 @@
 
   <!-- Endereco -->
   <div class="form-row mb-4">
-    <input type="tel" formControlName="endereco" id="defaultRegisterFormAddress" [ngClass]="{'is-valid': signUpForm.get('endereco').valid, 'is-invalid': (!signUpForm.get('endereco').valid && signUpForm.get('endereco').touched)}" class="form-control" placeholder="Endereco" aria-describedby="defaultRegisterFormAddressHelpBlock">
+    <input
+      type="tel"
+      formControlName="endereco"
+      id="defaultRegisterFormAddress"
+      [ngClass]="{
+        'is-valid': signUpForm.get('endereco').valid,
+        'is-invalid':
+          !signUpForm.get('endereco').valid &&
+          signUpForm.get('endereco').touched
+      }"
+      class="form-control"
+      placeholder="Endereco"
+      aria-describedby="defaultRegisterFormAddressHelpBlock"
+    />
     <div class="mt-1 w-100 d-flex flex-column align-items-center">
       <ng-container *ngFor="let error of errorMessages.endereco">
-        <small id="defaultRegisterFormAddressHelpBlock" class="d-block text-danger"
-          *ngIf="signUpForm.get('endereco').hasError(error.type) && (signUpForm.get('endereco').dirty || signUpForm.get('endereco').touched)">
-          {{error.message}}
+        <small
+          id="defaultRegisterFormAddressHelpBlock"
+          class="d-block text-danger"
+          *ngIf="
+            signUpForm.get('endereco').hasError(error.type) &&
+            (signUpForm.get('endereco').dirty ||
+              signUpForm.get('endereco').touched)
+          "
+        >
+          {{ error.message }}
         </small>
       </ng-container>
     </div>
@@ -72,29 +164,64 @@
   <div class="form-row mb-4">
     <div class="col">
       <!-- Cidade -->
-      <input type="text" formControlName="cidade" [ngClass]="{'is-valid': signUpForm.get('cidade').valid, 'is-invalid': (!signUpForm.get('cidade').valid && signUpForm.get('cidade').touched) }" id="defaultRegisterFormCity" class="form-control" placeholder="Cidade">
+      <input
+        type="text"
+        formControlName="cidade"
+        [ngClass]="{
+          'is-valid': signUpForm.get('cidade').valid,
+          'is-invalid':
+            !signUpForm.get('cidade').valid && signUpForm.get('cidade').touched
+        }"
+        id="defaultRegisterFormCity"
+        class="form-control"
+        placeholder="Cidade"
+      />
       <div class="mt-1 w-100 d-flex flex-column align-items-center">
         <ng-container *ngFor="let error of errorMessages.cidade">
-          <small id="defaultRegisterFormCityHelpBlock" class="d-block text-danger"
-            *ngIf="signUpForm.get('cidade').hasError(error.type) && (signUpForm.get('cidade').dirty || signUpForm.get('cidade').touched)">
-            {{error.message}}
+          <small
+            id="defaultRegisterFormCityHelpBlock"
+            class="d-block text-danger"
+            *ngIf="
+              signUpForm.get('cidade').hasError(error.type) &&
+              (signUpForm.get('cidade').dirty ||
+                signUpForm.get('cidade').touched)
+            "
+          >
+            {{ error.message }}
           </small>
         </ng-container>
       </div>
     </div>
     <div class="col">
       <!-- Estado -->
-      <select formControlName="estado" [ngClass]="{'is-valid': signUpForm.get('estado').valid, 'is-invalid': (!signUpForm.get('estado').valid && signUpForm.get('estado').touched)}" class="browser-default custom-select">
+      <select
+        formControlName="estado"
+        [ngClass]="{
+          'is-valid': signUpForm.get('estado').valid,
+          'is-invalid':
+            !signUpForm.get('estado').valid && signUpForm.get('estado').touched
+        }"
+        class="browser-default custom-select"
+      >
         <option selected>Estado</option>
         <ng-container *ngFor="let uf of listUf">
-          <option [value]="uf.value">{{uf.name}}</option>
+          <option [value]="uf.value">{{ uf.name }}</option>
         </ng-container>
       </select>
     </div>
   </div>
 
   <!-- Sign up button -->
-  <button (click)="signUp()" [disabled]="!signUpForm.valid" mdbBtn color="info" block="true" class="my-4" type="submit">Registrar</button>
-
+  <button
+    (click)="signUp()"
+    [disabled]="!signUpForm.valid"
+    mdbBtn
+    color="info"
+    block="true"
+    class="my-4"
+    type="submit"
+  >
+    Registrar
+  </button>
 </form>
 <!-- Default form register -->

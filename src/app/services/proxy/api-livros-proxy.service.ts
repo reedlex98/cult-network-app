@@ -9,7 +9,7 @@ import { SignInResponse } from '../dto/sign-in-response';
 import { SignUpForm } from '../dto/sign-up-form';
 import { SignInForm } from '../dto/sign-in-form';
 
-const BASE_URL = "http://apitrocalivros.gear.host/api"
+const BASE_URL = 'http://apitrocalivros.gear.host/api';
 
 @Injectable()
 export class ApiLivrosProxyService {
@@ -21,15 +21,15 @@ export class ApiLivrosProxyService {
   signIn(signInForm: SignInForm): Observable<SignInResponse> {
     return this.httpClient.post<SignInResponse>(
       `${BASE_URL}/cn/access/login`,
-      signInForm
-    )
+      {...signInForm, grant_type: 'password'}
+    );
   }
 
   signUp(signUpForm: SignUpForm): Observable<SignUpResponse> {
     return this.httpClient.post<SignUpResponse>(
       `${BASE_URL}/cn/criarUsuario`,
       signUpForm
-    )
+    );
   }
 
 }
