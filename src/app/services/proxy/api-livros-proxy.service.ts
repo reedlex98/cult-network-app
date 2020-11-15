@@ -1,6 +1,6 @@
 // Dependencies
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 // DTOs
@@ -19,11 +19,27 @@ export class ApiLivrosProxyService {
   ) { }
 
   signIn(signInForm: SignInForm): Observable<SignInResponse> {
-    return this.httpClient.post<SignInResponse>(
-      `${BASE_URL}/cn/access/login`,
-      {...signInForm, grant_type: 'password'}
-    );
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/x-www-form-urlencoded');
+
+    const urlSearchParams = new URLSearchParams();
+    urlSearchParams.set('grant_type', 'password');
+    urlSearchParams.set('username', signInForm.username);
+    urlSearchParams.set('password', signInForm.password);
+
+    const body = urlSearchParams.toString();
+
+    return this.httpClient.post<SignInResponse>(`${BASE_URL}/cn/access/login`, body, {
+      headers
+    });
   }
+
+  // signIn(signInForm: SignInForm): Observable<SignInResponse> {
+  //   return this.httpClient.post<SignInResponse>(
+  //     `${BASE_URL}/cn/access/login`,
+  //     JSON.stringify({...signInForm, grant_type: 'password'})
+  //   );
+  // }
 
   signUp(signUpForm: SignUpForm): Observable<SignUpResponse> {
     return this.httpClient.post<SignUpResponse>(

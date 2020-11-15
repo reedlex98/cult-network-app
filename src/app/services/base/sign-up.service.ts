@@ -76,7 +76,11 @@ export class SignUpService {
       {
         type: 'required',
         message: 'Campo obrigatório'
-      }
+      },
+      // {
+      //   type: 'pattern',
+      //   message: 'Apenas números são permitidos'
+      // }
     ],
     endereco: [
       {
@@ -151,7 +155,8 @@ export class SignUpService {
         idade: new FormControl(
           '',
           Validators.compose([
-            Validators.required
+            Validators.required,
+            // Validators.pattern('[a-zA-Z]'),
           ])
         ),
         senha: new FormControl(
