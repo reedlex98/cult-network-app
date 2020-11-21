@@ -5,19 +5,19 @@ import { Observable } from 'rxjs';
 import { SignInService } from 'src/app/services/base/sign-in.service';
 
 @Injectable()
-export class JwtInterceptor implements HttpInterceptor {
+export class TokenInterceptor implements HttpInterceptor {
     constructor(
       private signInService: SignInService) { }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        // add authorization header with jwt token if available
         const tokenResponse = this.signInService.tokenResponseValue;
-        if (tokenResponse && tokenResponse.access_token) {
+        if (request.url.includes('http://apitrocalivros.gear.host/api') && tokenResponse && tokenResponse.access_token) {
             request = request.clone({
                 setHeaders: {
                     Authorization: `Bearer ${tokenResponse.access_token}`
                 }
             });
+            console.log('in the interceptor, token: ', tokenResponse.access_token)
         }
 
         return next.handle(request);

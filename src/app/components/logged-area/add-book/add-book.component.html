@@ -1,0 +1,314 @@
+<div class="add-book-container row w-100 mt-5">
+  <div class="add-book-form col-6">
+    <form class="text-center border border-light p-5" [formGroup]="searchBookForm">
+      <p class="h4 mb-4">Adicione um novo livro</p>
+
+      <p class="text-center mb-4">
+        Digite o ISBN do livro que deseja cadastrar, após isso clique no botão "Adicionar livro". O ISBN é um número identificador do seu livro que normalmente pode ser encontrado na capa. Caso você não tenha o ISBN ou se a busca falhar clique no botão "Cadastrar manualmente" e preencha o formulário ao lado
+      </p>
+
+      <!-- Nome -->
+      <div class="form-row mb-4">
+        <input
+          type="text"
+          formControlName="isbn"
+          id="defaultRegisterFormIsbn"
+          aria-describedby="defaultRegisterFormIsbnHelpBlock"
+          [ngClass]="{
+            'is-valid': registerMode === 'MANUAL' && searchBookForm.get('isbn').valid,
+            'is-invalid':
+              registerMode === 'MANUAL' && !searchBookForm.get('isbn').valid && searchBookForm.get('isbn').touched
+          }"
+          class="form-control"
+          placeholder="ISBN do livro"
+        />
+        <div class="mt-1 w-100 d-flex flex-column align-items-center">
+          <ng-container *ngFor="let error of errorMessages.isbn">
+            <small
+              class="d-block text-danger"
+              id="defaultRegisterFormIsbnHelpBlock"
+              *ngIf="
+                searchBookForm.get('isbn').hasError(error.type) &&
+                (searchBookForm.get('isbn').dirty ||
+                  searchBookForm.get('isbn').touched)
+              "
+            >
+              {{ error.message }}
+            </small>
+          </ng-container>
+        </div>
+      </div>
+
+      <!-- Sign up button -->
+      <button
+        (click)="searchBookByIsbn()"
+        [disabled]="!searchBookForm.valid"
+        mdbBtn
+        color="success"
+        block="true"
+        class="my-4"
+      >
+        Buscar pelo ISBN
+      </button>
+      <button
+        (click)="toggleRegisterMode()"
+        mdbBtn
+        color="info"
+        block="true"
+        class="my-4"
+      >
+      {{registerMode === 'AUTO' ? 'Registrar manualmente' : 'Registrar automaticamente (ISBN)'}}
+      </button>
+    </form>
+  </div>
+  <div class="col-6">
+    <form class="text-center border border-light p-5" (change)="onChange()" [formGroup]="addBookForm">
+      <!-- ISBN -->
+      <div class="form-row mb-4">
+        <label for="defaultRegisterFormIsbn" >ISBN</label>
+        <input
+          type="text"
+          formControlName="isbn"
+          id="defaultRegisterFormIsbn"
+          aria-describedby="defaultRegisterFormIsbnHelpBlock"
+          [ngClass]="{
+            'is-valid': registerMode === 'MANUAL' && addBookForm.get('isbn').valid,
+            'is-invalid':
+              registerMode === 'MANUAL' && !addBookForm.get('isbn').valid && addBookForm.get('isbn').touched
+          }"
+          class="form-control"
+        />
+        <div class="mt-1 w-100 d-flex flex-column align-items-center">
+          <ng-container *ngFor="let error of errorMessages.isbn">
+            <small
+              class="d-block text-danger"
+              id="defaultRegisterFormIsbnHelpBlock"
+              *ngIf="
+                addBookForm.get('isbn').hasError(error.type) &&
+                (addBookForm.get('isbn').dirty ||
+                  addBookForm.get('isbn').touched)
+              "
+            >
+              {{ error.message }}
+            </small>
+          </ng-container>
+        </div>
+      </div>
+      <!-- Titulo -->
+      <div class="form-row mb-4">
+        <label for="defaultRegisterFormTitulo">Título</label>
+        <input
+          type="text"
+          formControlName="titulo"
+          id="defaultRegisterFormTitulo"
+          aria-describedby="defaultRegisterFormTituloHelpBlock"
+          [ngClass]="{
+            'is-valid': registerMode === 'MANUAL' && addBookForm.get('titulo').valid,
+            'is-invalid':
+              registerMode === 'MANUAL' && !addBookForm.get('titulo').valid && addBookForm.get('titulo').touched
+          }"
+          class="form-control"
+        />
+        <div class="mt-1 w-100 d-flex flex-column align-items-center">
+          <ng-container *ngFor="let error of errorMessages.titulo">
+            <small
+              class="d-block text-danger"
+              id="defaultRegisterFormTituloHelpBlock"
+              *ngIf="
+                addBookForm.get('titulo').hasError(error.type) &&
+                (addBookForm.get('titulo').dirty ||
+                  addBookForm.get('titulo').touched)
+              "
+            >
+              {{ error.message }}
+            </small>
+          </ng-container>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <!-- Autor -->
+          <div class="form-row mb-4">
+            <label for="defaultRegisterFormAutor">Autor</label>
+            <input
+              type="text"
+              formControlName="autor"
+              id="defaultRegisterFormAutor"
+              aria-describedby="defaultRegisterFormAutorHelpBlock"
+              [ngClass]="{
+                'is-valid': registerMode === 'MANUAL' && addBookForm.get('autor').valid,
+                'is-invalid':
+                  registerMode === 'MANUAL' && !addBookForm.get('autor').valid && addBookForm.get('autor').touched
+              }"
+              class="form-control"
+            />
+            <div class="mt-1 w-100 d-flex flex-column align-items-center">
+              <ng-container *ngFor="let error of errorMessages.autor">
+                <small
+                  class="d-block text-danger"
+                  id="defaultRegisterFormAutorHelpBlock"
+                  *ngIf="
+                    addBookForm.get('autor').hasError(error.type) &&
+                    (addBookForm.get('autor').dirty ||
+                      addBookForm.get('autor').touched)
+                  "
+                >
+                  {{ error.message }}
+                </small>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <!-- Idioma -->
+          <div class="form-row mb-4">
+            <label for="defaultRegisterFormAutor">Idioma</label>
+            <input
+              type="text"
+              formControlName="idioma"
+              id="defaultRegisterFormIdioma"
+              aria-describedby="defaultRegisterFormIdiomaHelpBlock"
+              [ngClass]="{
+                'is-valid': registerMode === 'MANUAL' && addBookForm.get('idioma').valid,
+                'is-invalid':
+                  registerMode === 'MANUAL' && !addBookForm.get('idioma').valid && addBookForm.get('idioma').touched
+              }"
+              class="form-control"
+            />
+            <div class="mt-1 w-100 d-flex flex-column align-items-center">
+              <ng-container *ngFor="let error of errorMessages.idioma">
+                <small
+                  class="d-block text-danger"
+                  id="defaultRegisterFormIdiomaHelpBlock"
+                  *ngIf="
+                    addBookForm.get('idioma').hasError(error.type) &&
+                    (addBookForm.get('idioma').dirty ||
+                      addBookForm.get('idioma').touched)
+                  "
+                >
+                  {{ error.message }}
+                </small>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-6">
+          <!-- DataEdicao -->
+          <div class="form-row mb-4">
+            <label for="defaultRegisterFormAutor">Data de publicação</label>
+            <input
+              type="date"
+              formControlName="dataEdicao"
+              id="defaultRegisterFormDataEdicao"
+              aria-describedby="defaultRegisterFormDataEdicaoHelpBlock"
+              [ngClass]="{
+                'is-valid': registerMode === 'MANUAL' && addBookForm.get('dataEdicao').valid,
+                'is-invalid':
+                 registerMode === 'MANUAL' &&  !addBookForm.get('dataEdicao').valid && addBookForm.get('dataEdicao').touched
+              }"
+              class="form-control"
+            />
+            <div class="mt-1 w-100 d-flex flex-column align-items-center">
+              <ng-container *ngFor="let error of errorMessages.dataEdicao">
+                <small
+                  class="d-block text-danger"
+                  id="defaultRegisterFormDataEdicaoHelpBlock"
+                  *ngIf="
+                    addBookForm.get('dataEdicao').hasError(error.type) &&
+                    (addBookForm.get('dataEdicao').dirty ||
+                      addBookForm.get('dataEdicao').touched)
+                  "
+                >
+                  {{ error.message }}
+                </small>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <!-- QtdTotalPaginas -->
+          <div class="form-row mb-4">
+            <label for="defaultRegisterFormAutor">Quantidade de páginas</label>
+            <input
+              type="number"
+              formControlName="qtdTotalPaginas"
+              id="defaultRegisterFormQtdTotalPaginas"
+              aria-describedby="defaultRegisterFormQtdTotalPaginasHelpBlock"
+              [ngClass]="{
+                'is-valid': registerMode === 'MANUAL' && addBookForm.get('qtdTotalPaginas').valid,
+                'is-invalid':registerMode === 'MANUAL' &&
+                  !addBookForm.get('qtdTotalPaginas').valid && addBookForm.get('qtdTotalPaginas').touched
+              }"
+              class="form-control"
+            />
+            <div class="mt-1 w-100 d-flex flex-column align-items-center">
+              <ng-container *ngFor="let error of errorMessages.qtdTotalPaginas">
+                <small
+                  class="d-block text-danger"
+                  id="defaultRegisterFormQtdTotalPaginasHelpBlock"
+                  *ngIf="
+                    addBookForm.get('qtdTotalPaginas').hasError(error.type) &&
+                    (addBookForm.get('qtdTotalPaginas').dirty ||
+                      addBookForm.get('qtdTotalPaginas').touched)
+                  "
+                >
+                  {{ error.message }}
+                </small>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Descricao Livro -->
+      <div class="form-row mb-4">
+        <label for="defaultRegisterFormAutor">Descrição do Livro</label>
+        <textarea
+          type="textarea"
+          rows="5"
+          style="resize: none;"
+          formControlName="descricaoLivro"
+          id="defaultRegisterFormDescricaoLivro"
+          aria-describedby="defaultRegisterFormDescricaoLivroHelpBlock"
+          [ngClass]="{
+            'is-valid': registerMode === 'MANUAL' && addBookForm.get('descricaoLivro').valid,
+            'is-invalid':registerMode === 'MANUAL' &&
+              !addBookForm.get('descricaoLivro').valid && addBookForm.get('descricaoLivro').touched
+          }"
+          class="form-control"
+        ></textarea>
+        <div class="mt-1 w-100 d-flex flex-column align-items-center">
+          <ng-container *ngFor="let error of errorMessages.descricaoLivro">
+            <small
+              class="d-block text-danger"
+              id="defaultRegisterFormDescricaoLivroHelpBlock"
+              *ngIf="
+                addBookForm.get('descricaoLivro').hasError(error.type) &&
+                (addBookForm.get('descricaoLivro').dirty ||
+                  addBookForm.get('descricaoLivro').touched)
+              "
+            >
+              {{ error.message }}
+            </small>
+          </ng-container>
+        </div>
+      </div>
+      <button
+        (click)="registerNewBook()"
+        [disabled]="searchSucceded ? false : !addBookForm.valid"
+        mdbBtn
+        color="success"
+        block="true"
+        class="my-4"
+      >
+        Adicionar livro
+      </button>
+    </form>
+  </div>
+</div>
+<!-- Default form register -->
+
+<!-- Default form register -->

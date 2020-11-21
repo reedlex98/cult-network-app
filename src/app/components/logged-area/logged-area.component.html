@@ -1,4 +1,4 @@
-<ng-container class="d-flex">
+<div class="d-flex flex-row w-100">
   <aside class="logged-area-aside-menu d-flex flex-column align-items-center">
     <div class="cult-network-logo">
       <span class="logo-title">
@@ -7,34 +7,38 @@
     </div>
 
     <ul class="menu-options">
-      <!-- <li class="option">
-         <fa-icon [icon]="faHome"></fa-icon>
-         <span>Inicio</span>
-      </li> -->
       <li class="option">
-         <fa-icon [icon]="faUser"></fa-icon>
-         <span>Meu Perfil</span>
+        <a [routerLink]="['/app/dashboard']">
+          <fa-icon [icon]="faHome"></fa-icon>
+          <span>Inicio</span>
+        </a>
       </li>
       <li class="option">
-         <fa-icon [icon]="faBook"></fa-icon>
-         <span>Minha biblioteca</span>
+        <fa-icon [icon]="faUser"></fa-icon>
+        <span>Meu Perfil</span>
       </li>
       <li class="option">
-         <fa-icon [icon]="faBookMedical"></fa-icon>
-         <span>Adicionar livros</span>
+        <fa-icon [icon]="faBook"></fa-icon>
+        <span>Minha biblioteca</span>
       </li>
       <li class="option">
-         <fa-icon [icon]="faShareAltSquare"></fa-icon>
-         <span>Trocar livros</span>
+        <a [routerLink]="['/app/add-book']">
+          <fa-icon [icon]="faBookMedical"></fa-icon>
+          <span>Adicionar livros</span>
+        </a>
       </li>
       <li class="option">
-         <fa-icon [icon]="faAngry"></fa-icon>
-         <span>Efetuar denúncia</span>
+        <fa-icon [icon]="faShareAltSquare"></fa-icon>
+        <span>Trocar livros</span>
+      </li>
+      <li class="option">
+        <fa-icon [icon]="faAngry"></fa-icon>
+        <span>Efetuar denúncia</span>
       </li>
     </ul>
   </aside>
 
-  <div class="logged-area-content">
+  <div class="logged-area-content container-fluid">
     <router-outlet></router-outlet>
   </div>
-</ng-container>
+</div>

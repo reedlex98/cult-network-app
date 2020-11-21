@@ -8,15 +8,20 @@ import { SignUpResponse } from '../dto/sign-up.response';
 import { SignInResponse } from '../dto/sign-in-response';
 import { SignUpForm } from '../dto/sign-up-form';
 import { SignInForm } from '../dto/sign-in-form';
+import { DefaultResponse } from '../dto/default.response';
 
 const BASE_URL = 'http://apitrocalivros.gear.host/api';
 
 @Injectable()
 export class ApiLivrosProxyService {
+  constructor(private httpClient: HttpClient) {}
 
-  constructor(
-    private httpClient: HttpClient
-  ) { }
+  registerNewBook(addBookForm): Observable<DefaultResponse> {
+    return this.httpClient.post<DefaultResponse>(
+      `${BASE_URL}/cn/livro/criarLivro`,
+      addBookForm
+    );
+  }
 
   signIn(signInForm: SignInForm): Observable<SignInResponse> {
     const headers = new HttpHeaders();
@@ -29,9 +34,13 @@ export class ApiLivrosProxyService {
 
     const body = urlSearchParams.toString();
 
-    return this.httpClient.post<SignInResponse>(`${BASE_URL}/cn/access/login`, body, {
-      headers
-    });
+    return this.httpClient.post<SignInResponse>(
+      `${BASE_URL}/cn/access/login`,
+      body,
+      {
+        headers,
+      }
+    );
   }
 
   // signIn(signInForm: SignInForm): Observable<SignInResponse> {
@@ -47,5 +56,4 @@ export class ApiLivrosProxyService {
       signUpForm
     );
   }
-
 }

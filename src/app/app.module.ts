@@ -1,3 +1,4 @@
+import { TokenInterceptor } from './shared/helpers/token.interceptor';
 import { HttpClientModule } from '@angular/common/http';
 // Modules
 import { NgModule } from '@angular/core';
@@ -8,6 +9,7 @@ import { AuthenticationModule } from './components/authentication/authentication
 import { LoggedAreaModule } from './components/logged-area/logged-area.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { NgxUiLoaderModule } from "ngx-ui-loader";
 
 // Services
 import { ServicesModule } from './services/services.module'
@@ -17,7 +19,7 @@ import { AppComponent } from './app.component';
 import { IntroComponent } from './components/intro/intro.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { LoadingInterceptorService } from './shared/services/loading-intercept.service';
+import { GlobalHttpErrorHandlingInterceptorService } from './shared/helpers/global-http-error-handling.interceptor';
 
 @NgModule({
   declarations: [
@@ -36,11 +38,17 @@ import { LoadingInterceptorService } from './shared/services/loading-intercept.s
     HttpClientModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
+    NgxUiLoaderModule
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: LoadingInterceptorService,
+      useClass: TokenInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: GlobalHttpErrorHandlingInterceptorService,
       multi: true
     }
   ],

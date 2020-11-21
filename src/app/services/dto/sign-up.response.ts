@@ -1,5 +1,4 @@
-export interface SignUpResponse {
-  Msg: string,
-  Status: "OK" | string
-  Code: number
+import { DefaultResponse } from './default.response';
+
+export interface SignUpResponse extends DefaultResponse {
 }
