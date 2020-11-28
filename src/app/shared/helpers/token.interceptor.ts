@@ -17,7 +17,6 @@ export class TokenInterceptor implements HttpInterceptor {
                     Authorization: `Bearer ${tokenResponse.access_token}`
                 }
             });
-            console.log('in the interceptor, token: ', tokenResponse.access_token)
         }
 
         return next.handle(request);

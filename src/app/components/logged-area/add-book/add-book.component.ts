@@ -15,7 +15,7 @@ export class AddBookComponent implements OnInit {
   public addBookForm: FormGroup;
   public searchBookForm: FormGroup;
   public errorMessages: any;
-  public searchSucceded: boolean = false;
+  public searchSucceded = false;
   public registerMode: 'MANUAL' | 'AUTO' = 'AUTO';
   public isLoading = false;
 
@@ -103,9 +103,7 @@ export class AddBookComponent implements OnInit {
     this.addBookForm = this.addBookService.getAddBookForm();
   }
 
-  onChange() {
-    // console.log(this.addBookForm.get('isbn').value);
-  }
+  onChange() {}
 
   ngOnInit() {
     this.searchBookForm = this.addBookService.getSearchBookForm();

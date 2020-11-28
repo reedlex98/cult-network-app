@@ -20,11 +20,14 @@ import { IntroComponent } from './components/intro/intro.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { GlobalHttpErrorHandlingInterceptorService } from './shared/helpers/global-http-error-handling.interceptor';
+import { PageNotFoundComponent } from './shared/components/pageNotFound/page-not-found.component';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 @NgModule({
   declarations: [
     AppComponent,
     IntroComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,

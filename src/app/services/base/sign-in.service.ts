@@ -1,6 +1,6 @@
 import { TokenResponse } from './../dto/token.response';
 // Dependencies
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import {
   FormBuilder,
@@ -19,6 +19,10 @@ import { map } from 'rxjs/operators';
 
 @Injectable()
 export class SignInService {
+  public static tokenResponseSubject: BehaviorSubject<TokenResponse> = new BehaviorSubject<TokenResponse>(
+    JSON.parse(localStorage.getItem('tokenResponse'))
+  ) ;
+
   public signInForm: FormGroup;
   public errorMessages = {
     username: [
@@ -36,16 +40,13 @@ export class SignInService {
   };
   public tokenResponse: Observable<TokenResponse>;
 
-  private tokenResponseSubject: BehaviorSubject<TokenResponse>;
 
   constructor(
     private apiLivrosProxyService: ApiLivrosProxyService,
     private formBuilder: FormBuilder
   ) {
-    this.tokenResponseSubject = new BehaviorSubject<TokenResponse>(
-      JSON.parse(localStorage.getItem('tokenResponse'))
-    );
-    this.tokenResponse = this.tokenResponseSubject.asObservable();
+    //  this.tokenResponseSubject = ;
+    this.tokenResponse = SignInService.tokenResponseSubject.asObservable();
   }
 
   public getErrorMessages(): any {
@@ -53,7 +54,7 @@ export class SignInService {
   }
 
   public get tokenResponseValue(): TokenResponse {
-    return this.tokenResponseSubject.value;
+    return SignInService.tokenResponseSubject.value;
   }
 
   public getSignInForm(): FormGroup {
@@ -68,7 +69,7 @@ export class SignInService {
     return this.apiLivrosProxyService.signIn(signInForm).pipe(
       map((tokenObj) => {
         localStorage.setItem('tokenResponse', JSON.stringify(tokenObj));
-        this.tokenResponseSubject.next(tokenObj);
+        SignInService.tokenResponseSubject.next(tokenObj);
         return tokenObj;
       })
     );
@@ -77,6 +78,8 @@ export class SignInService {
   logout() {
     // remove user from local storage to log user out
     localStorage.removeItem('tokenResponse');
-    this.tokenResponseSubject.next(null);
+
+    SignInService.tokenResponseSubject = new BehaviorSubject<TokenResponse>(null);
+    this.tokenResponse = SignInService.tokenResponseSubject.asObservable();
   }
 }

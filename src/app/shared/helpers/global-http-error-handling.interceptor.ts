@@ -31,7 +31,9 @@ export class GlobalHttpErrorHandlingInterceptorService
           err.status === 401 &&
           request.url.includes('http://apitrocalivros.gear.host/api')
         ) {
+          console.log('caiu aqui');
           this.toastr.show('O seu token expirou, logue-se novamente!');
+          this.signInService.logout();
           this.router.navigate(['/auth/sign-in'], {
             queryParams: { returnUrl: this.router.url },
           });

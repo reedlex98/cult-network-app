@@ -7,6 +7,7 @@ import { catchError, tap, finalize } from 'rxjs/operators';
 import { SignInService } from 'src/app/services/base/sign-in.service';
 import { SignInForm } from 'src/app/services/dto/sign-in-form';
 import { Uf } from 'src/app/services/dto/uf';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-sign-in-form',
@@ -25,7 +26,8 @@ export class SignInFormComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private toastr: ToastrService,
-    private ngxLoader: NgxUiLoaderService
+    private ngxLoader: NgxUiLoaderService,
+    private location: Location
   ) {}
 
   ngOnInit() {
@@ -33,6 +35,7 @@ export class SignInFormComponent implements OnInit {
     this.errorMessages = this.signInService.getErrorMessages();
     this.route.queryParams.subscribe((params) => {
       this.returnUrl = params.returnUrl;
+      console.log(this.returnUrl)
     });
   }
 
@@ -48,7 +51,7 @@ export class SignInFormComponent implements OnInit {
       .subscribe(
         () => {
           if (this.returnUrl) {
-            this.router.navigate([this.returnUrl]);
+            location.replace(location.origin + this.returnUrl);
             return;
           }
           this.router.navigateByUrl('app/dashboard');

@@ -1,3 +1,4 @@
+import { UserLibraryBook } from './../dto/user-library-book';
 // Dependencies
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -23,6 +24,28 @@ export class ApiLivrosProxyService {
     );
   }
 
+  // getBookByTitle(title: string): Observable<UserLibraryBook[]>{
+  //   return this.httpClient.get<UserLibraryBook[]>(
+  //     `${BASE_URL}/cn/livro/getLivroTitulo`,
+  //     {
+  //       title
+  //     }
+  //   );
+  // }
+
+  updateUserData(signInForm: SignInForm): Observable<DefaultResponse> {
+    return this.httpClient.put<DefaultResponse>(
+      `${BASE_URL}/cn/atualizarDadosPessoais`,
+      signInForm
+    );
+  }
+
+  getUserLibraryBooks(): Observable<UserLibraryBook[]> {
+    return this.httpClient.get<UserLibraryBook[]>(
+      `${BASE_URL}/cn/livro/consultarLivrosUsuarioLogado`
+    );
+  }
+
   signIn(signInForm: SignInForm): Observable<SignInResponse> {
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'application/x-www-form-urlencoded');
@@ -42,13 +65,6 @@ export class ApiLivrosProxyService {
       }
     );
   }
-
-  // signIn(signInForm: SignInForm): Observable<SignInResponse> {
-  //   return this.httpClient.post<SignInResponse>(
-  //     `${BASE_URL}/cn/access/login`,
-  //     JSON.stringify({...signInForm, grant_type: 'password'})
-  //   );
-  // }
 
   signUp(signUpForm: SignUpForm): Observable<SignUpResponse> {
     return this.httpClient.post<SignUpResponse>(

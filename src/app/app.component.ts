@@ -1,4 +1,5 @@
 import { Component, OnDestroy } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgxUiLoaderService, SPINNER } from 'ngx-ui-loader';
 import { SignInService } from './services/base/sign-in.service';
 
@@ -7,13 +8,19 @@ import { SignInService } from './services/base/sign-in.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.sass'],
 })
-export class AppComponent{
+export class AppComponent {
   public SPINNER = SPINNER;
-  // constructor(private signInService: SignInService) {
-  //   console.log(this.signInService.tokenResponseValue);
-  //   window.onbe = () => {
-  //     console.log('unloading');
-  //     this.signInService.logout();
-  //   };
-  // }
+  constructor(private signInService: SignInService, private router: Router) {}
+
+  onChangeRoute() {
+    if (
+      this.router.url === '/auth/sign-in' ||
+      this.router.url === '/auth/sign-up' ||
+      this.router.url === '/'
+    ) {
+      if (localStorage.getItem('tokenResponse')) {
+        this.router.navigate(['app/dashboard']);
+      }
+    }
+  }
 }

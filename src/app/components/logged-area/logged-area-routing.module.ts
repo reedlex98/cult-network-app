@@ -1,5 +1,7 @@
+import { MyLibraryComponent } from './my-library/my-library.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { PageNotFoundComponent } from 'src/app/shared/components/pageNotFound/page-not-found.component';
 import { AddBookComponent } from './add-book/add-book.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoggedAreaComponent } from './logged-area.component';
@@ -22,8 +24,13 @@ const routes: Routes = [
         path: 'add-book',
         component: AddBookComponent,
       },
+      {
+        path: 'my-library',
+        component: MyLibraryComponent,
+      }
     ],
   },
+  { path: '**', component: PageNotFoundComponent }
 ];
 
 @NgModule({

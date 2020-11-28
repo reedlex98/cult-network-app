@@ -15,9 +15,11 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { CommonModule } from '@angular/common';
 import { AddBookComponent } from './add-book/add-book.component';
 import { AddBookService } from 'src/app/services/base/add-book.service';
+import { MyLibraryComponent } from './my-library/my-library.component';
+import { MyLibraryService } from 'src/app/services/base/my-library.service';
 
 @NgModule({
-  declarations: [LoggedAreaComponent, DashboardComponent, AddBookComponent],
+  declarations: [LoggedAreaComponent, DashboardComponent, AddBookComponent, MyLibraryComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -28,7 +30,8 @@ import { AddBookService } from 'src/app/services/base/add-book.service';
     MDBBootstrapModule.forRoot(),
   ],
   providers: [
-    AddBookService
+    AddBookService,
+    MyLibraryService
   ],
   bootstrap: [LoggedAreaComponent],
 })

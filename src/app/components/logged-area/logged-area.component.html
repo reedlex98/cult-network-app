@@ -7,25 +7,21 @@
     </div>
 
     <ul class="menu-options">
-      <li class="option">
-        <a [routerLink]="['/app/dashboard']">
-          <fa-icon [icon]="faHome"></fa-icon>
-          <span>Inicio</span>
-        </a>
+      <li class="option" [routerLink]="['/app/dashboard']">
+        <fa-icon [icon]="faHome"></fa-icon>
+        <span>Inicio</span>
       </li>
       <li class="option">
         <fa-icon [icon]="faUser"></fa-icon>
         <span>Meu Perfil</span>
       </li>
-      <li class="option">
+      <li class="option" [routerLink]="['/app/my-library']">
         <fa-icon [icon]="faBook"></fa-icon>
         <span>Minha biblioteca</span>
       </li>
-      <li class="option">
-        <a [routerLink]="['/app/add-book']">
-          <fa-icon [icon]="faBookMedical"></fa-icon>
-          <span>Adicionar livros</span>
-        </a>
+      <li class="option" [routerLink]="['/app/add-book']">
+        <fa-icon [icon]="faBookMedical"></fa-icon>
+        <span>Adicionar livros</span>
       </li>
       <li class="option">
         <fa-icon [icon]="faShareAltSquare"></fa-icon>
@@ -34,6 +30,10 @@
       <li class="option">
         <fa-icon [icon]="faAngry"></fa-icon>
         <span>Efetuar denúncia</span>
+      </li>
+      <li class="option" (click)="logout()">
+        <fa-icon [icon]="faDoorOpen"></fa-icon>
+        <span>Sair</span>
       </li>
     </ul>
   </aside>
