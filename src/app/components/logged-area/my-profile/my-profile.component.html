@@ -1,0 +1,255 @@
+<!-- Default form register -->
+<form
+  class="my-profile-form text-center border border-light p-5"
+  [formGroup]="updateProfileForm"
+>
+  <p class="h4 mb-4">Perfil pessoal</p>
+
+  <p class="text-center mb-4">
+    Clique no botão "Alterar dados" para fazer alterações
+  </p>
+
+  <!-- Nome -->
+  <div class="form-row mb-4">
+    <div class="col">
+      <label
+      class="w-100 text-left"
+        for="defaultRegisterFormName "
+        >Nome de usuário</label
+      >
+      <input
+        type="text"
+        formControlName="nome"
+        id="defaultRegisterFormName"
+        aria-describedby="defaultRegisterFormNameHelpBlock"
+        [ngClass]="{
+          'is-valid': updateProfileForm.get('nome').valid,
+          'is-invalid':
+            editMode &&
+            !updateProfileForm.get('nome').valid &&
+            updateProfileForm.get('nome').touched
+        }"
+        class="form-control"
+        placeholder="Nome de usuário"
+      />
+      <div class="mt-1 w-100 d-flex flex-column align-items-center">
+        <ng-container *ngFor="let error of errorMessages.nome">
+          <small
+            class="d-block text-danger"
+            id="defaultRegisterFormNameHelpBlock"
+            *ngIf="
+              updateProfileForm.get('nome').hasError(error.type) &&
+              (updateProfileForm.get('nome').dirty ||
+                updateProfileForm.get('nome').touched)
+            "
+          >
+            {{ error.message }}
+          </small>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+
+  <!-- Idade -->
+  <div class="form-row mb-4">
+    <div class="col">
+      <label
+      class="w-100 text-left" for="defaultRegisterFormAge">Idade</label>
+      <input
+        type="number"
+        min="12"
+        formControlName="idade"
+        id="defaultRegisterFormAge"
+        aria-describedby="defaultRegisterFormAgeHelpBlock"
+        [ngClass]="{
+          'is-valid': updateProfileForm.get('idade').valid,
+          'is-invalid':
+            editMode &&
+            !updateProfileForm.get('idade').valid &&
+            updateProfileForm.get('idade').touched
+        }"
+        class="form-control"
+        placeholder="Idade"
+      />
+      <div class="mt-1 w-100 d-flex flex-column align-items-center">
+        <ng-container *ngFor="let error of errorMessages.idade">
+          <small
+            class="d-block text-danger"
+            id="defaultRegisterFormAgeHelpBlock"
+            *ngIf="
+              updateProfileForm.get('idade').hasError(error.type) &&
+              (updateProfileForm.get('idade').dirty ||
+                updateProfileForm.get('idade').touched)
+            "
+          >
+            {{ error.message }}
+          </small>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+
+  <!-- E-mail -->
+  <div class="form-row mb-4">
+    <div class="col">
+      <label
+      class="w-100 text-left" for="defaultRegisterFormEmail">E-mail</label>
+      <input
+        type="email"
+        formControlName="email"
+        id="defaultRegisterFormEmail"
+        aria-describedby="defaultRegisterFormEmailHelpBlock"
+        [ngClass]="{
+          'is-valid': updateProfileForm.get('email').valid,
+          'is-invalid':
+            editMode &&
+            !updateProfileForm.get('email').valid &&
+            updateProfileForm.get('email').touched
+        }"
+        class="form-control"
+        placeholder="E-mail"
+      />
+      <div class="mt-1 w-100 d-flex flex-column align-items-center">
+        <ng-container *ngFor="let error of errorMessages.email">
+          <small
+            id="defaultRegisterFormEmailHelpBlock"
+            class="d-block text-danger"
+            *ngIf="
+              updateProfileForm.get('email').hasError(error.type) &&
+              (updateProfileForm.get('email').dirty ||
+                updateProfileForm.get('email').touched)
+            "
+          >
+            {{ error.message }}
+          </small>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+
+  <!-- Endereco -->
+  <div class="form-row mb-4">
+    <div class="col">
+      <label
+      class="w-100 text-left" for="defaultRegisterFormName">Endereço</label>
+      <input
+        type="tel"
+        formControlName="endereco"
+        id="defaultRegisterFormAddress"
+        [ngClass]="{
+          'is-valid': updateProfileForm.get('endereco').valid,
+          'is-invalid':
+            editMode &&
+            !updateProfileForm.get('endereco').valid &&
+            updateProfileForm.get('endereco').touched
+        }"
+        class="form-control"
+        placeholder="Endereco"
+        aria-describedby="defaultRegisterFormAddressHelpBlock"
+      />
+      <div class="mt-1 w-100 d-flex flex-column align-items-center">
+        <ng-container *ngFor="let error of errorMessages.endereco">
+          <small
+            id="defaultRegisterFormAddressHelpBlock"
+            class="d-block text-danger"
+            *ngIf="
+              updateProfileForm.get('endereco').hasError(error.type) &&
+              (updateProfileForm.get('endereco').dirty ||
+                updateProfileForm.get('endereco').touched)
+            "
+          >
+            {{ error.message }}
+          </small>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cidade e Estado -->
+  <div class="form-row mb-4">
+    <div class="col">
+      <!-- Cidade -->
+      <label
+      class="w-100 text-left" for="defaultRegisterFormCity">Cidade</label>
+      <input
+        type="text"
+        formControlName="cidade"
+        [ngClass]="{
+          'is-valid': updateProfileForm.get('cidade').valid,
+          'is-invalid':
+            editMode &&
+            !updateProfileForm.get('cidade').valid &&
+            updateProfileForm.get('cidade').touched
+        }"
+        id="defaultRegisterFormCity"
+        class="form-control"
+        placeholder="Cidade"
+      />
+      <div class="mt-1 w-100 d-flex flex-column align-items-center">
+        <ng-container *ngFor="let error of errorMessages.cidade">
+          <small
+            id="defaultRegisterFormCityHelpBlock"
+            class="d-block text-danger"
+            *ngIf="
+              updateProfileForm.get('cidade').hasError(error.type) &&
+              (updateProfileForm.get('cidade').dirty ||
+                updateProfileForm.get('cidade').touched)
+            "
+          >
+            {{ error.message }}
+          </small>
+        </ng-container>
+      </div>
+    </div>
+    <div class="col">
+      <!-- Estado -->
+      <label
+      class="w-100 text-left" for="defaultRegisterFormState">Estado</label>
+      <select
+        formControlName="estado"
+        [ngClass]="{
+          'is-valid': updateProfileForm.get('estado').valid,
+          'is-invalid':
+            editMode &&
+            !updateProfileForm.get('estado').valid &&
+            updateProfileForm.get('estado').touched
+        }"
+        class="browser-default custom-select"
+      >
+        <option selected [value]="">Estado</option>
+        <ng-container *ngFor="let uf of listUf">
+          <option [value]="uf.value">{{ uf.name }}</option>
+        </ng-container>
+      </select>
+    </div>
+  </div>
+
+  <div class="buttons-container row">
+    <div class="col">
+      <button
+        (click)="updateUserData()"
+        [disabled]="!updateProfileForm.valid && !this.editMode"
+        mdbBtn
+        color="success"
+        block="true"
+        class="my-4"
+        type="submit"
+      >
+        Atualizar dados
+      </button>
+    </div>
+    <div class="col">
+      <button
+        (click)="toggleEditMode()"
+        mdbBtn
+        color="info"
+        block="true"
+        class="my-4"
+        type="submit"
+      >
+        {{ this.editMode ? "Redefinir dados" : "Editar dados" }}
+      </button>
+    </div>
+  </div>
+</form>
+<!-- Default form register -->

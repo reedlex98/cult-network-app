@@ -5,6 +5,7 @@
   background: rgb(22, 18, 29);
   color: #e5e4f0;
 
+  transition: 0.1s all linear;
   a {
     color: inherit !important;
   }
@@ -43,5 +44,19 @@
 }
 
 .logged-area-content {
+  &.has-collapsed-menu {
+    margin-left:60px;
+  }
   margin-left: 300px;
+}
+
+.collapsed {
+  width:60px;
+  .menu-options .option {
+    display: flex;
+    justify-content: center;
+    span {
+      display: none;
+    }
+  }
 }

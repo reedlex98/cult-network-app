@@ -17,9 +17,18 @@ import { AddBookComponent } from './add-book/add-book.component';
 import { AddBookService } from 'src/app/services/base/add-book.service';
 import { MyLibraryComponent } from './my-library/my-library.component';
 import { MyLibraryService } from 'src/app/services/base/my-library.service';
+import { MyProfileComponent } from './my-profile/my-profile.component';
+import { MyProfileService } from 'src/app/services/base/my-profile.service';
+import { SearchBookService } from 'src/app/services/base/search-book.service';
 
 @NgModule({
-  declarations: [LoggedAreaComponent, DashboardComponent, AddBookComponent, MyLibraryComponent],
+  declarations: [
+    LoggedAreaComponent,
+    DashboardComponent,
+    AddBookComponent,
+    MyLibraryComponent,
+    MyProfileComponent
+  ],
   imports: [
     CommonModule,
     FormsModule,
@@ -31,7 +40,9 @@ import { MyLibraryService } from 'src/app/services/base/my-library.service';
   ],
   providers: [
     AddBookService,
-    MyLibraryService
+    MyLibraryService,
+    MyProfileService,
+    SearchBookService
   ],
   bootstrap: [LoggedAreaComponent],
 })

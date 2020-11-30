@@ -1,7 +1,8 @@
+import { GetUserResponse } from './../dto/get-user.response';
 import { UserLibraryBook } from './../dto/user-library-book';
 // Dependencies
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 // DTOs
@@ -10,6 +11,8 @@ import { SignInResponse } from '../dto/sign-in-response';
 import { SignUpForm } from '../dto/sign-up-form';
 import { SignInForm } from '../dto/sign-in-form';
 import { DefaultResponse } from '../dto/default.response';
+import { SearchBookResponse } from '../dto/search-book.response';
+import { title } from 'process';
 
 const BASE_URL = 'http://apitrocalivros.gear.host/api';
 
@@ -24,19 +27,40 @@ export class ApiLivrosProxyService {
     );
   }
 
-  // getBookByTitle(title: string): Observable<UserLibraryBook[]>{
-  //   return this.httpClient.get<UserLibraryBook[]>(
-  //     `${BASE_URL}/cn/livro/getLivroTitulo`,
-  //     {
-  //       title
-  //     }
-  //   );
-  // }
+  getBookByAuthor(autor: string): Observable<UserLibraryBook[]>{
+    return this.httpClient.post<SearchBookResponse[]>(
+      `${BASE_URL}/cn/livro/getLivroAutor`,
+      {
+        autor
+      }
+    );
+  }
 
-  updateUserData(signInForm: SignInForm): Observable<DefaultResponse> {
+  getBookByTitle(titulo: string): Observable<SearchBookResponse[]> {
+    return this.httpClient.post<SearchBookResponse[]>(
+      `${BASE_URL}/cn/livro/getLivroTitulo`,
+      {
+        titulo,
+      }
+    );
+  }
+
+  deleteUserBook(id: string): Observable<string> {
+    return this.httpClient.delete<string>(
+      `${BASE_URL}/cn/livro/deletaLivroPorId/${id}`
+    );
+  }
+
+  getUserData(): Observable<GetUserResponse> {
+    return this.httpClient.get<GetUserResponse>(
+      `${BASE_URL}/cn/getUsuarioLogado`
+    );
+  }
+
+  updateUserData(updateUserForm: SignUpForm): Observable<DefaultResponse> {
     return this.httpClient.put<DefaultResponse>(
       `${BASE_URL}/cn/atualizarDadosPessoais`,
-      signInForm
+      updateUserForm
     );
   }
 

@@ -1,8 +1,8 @@
 <div class="d-flex flex-row w-100">
-  <aside class="logged-area-aside-menu d-flex flex-column align-items-center">
+  <aside class="logged-area-aside-menu d-flex flex-column align-items-center" (mouseover)="expandMenu()" (mouseout)="collapseMenu()"  [class.collapsed]="isMenuCollapsed">
     <div class="cult-network-logo">
       <span class="logo-title">
-        Cult Network<span class="logo-dot">.</span>
+        {{ isMenuCollapsed ? 'CN' : 'Cult Network' }}<span class="logo-dot">.</span>
       </span>
     </div>
 
@@ -11,7 +11,7 @@
         <fa-icon [icon]="faHome"></fa-icon>
         <span>Inicio</span>
       </li>
-      <li class="option">
+      <li class="option" [routerLink]="['/app/my-profile']">
         <fa-icon [icon]="faUser"></fa-icon>
         <span>Meu Perfil</span>
       </li>
@@ -38,7 +38,7 @@
     </ul>
   </aside>
 
-  <div class="logged-area-content container-fluid">
+  <div class="logged-area-content container-fluid" [class.has-collapsed-menu]="isMenuCollapsed">
     <router-outlet></router-outlet>
   </div>
 </div>

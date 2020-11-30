@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {
   faBook,
@@ -9,6 +9,7 @@ import {
   faAngry,
   faHome,
 } from '@fortawesome/free-solid-svg-icons';
+import { SearchBookService } from 'src/app/services/base/search-book.service';
 import { SignInService } from 'src/app/services/base/sign-in.service';
 
 @Component({
@@ -24,11 +25,26 @@ export class LoggedAreaComponent {
   public faShareAltSquare = faShareAltSquare;
   public faAngry = faAngry;
   public faDoorOpen = faDoorOpen;
+  public isMenuCollapsed = true;
 
-  constructor(private signInService: SignInService, private router: Router) {}
+  constructor(
+    private signInService: SignInService,
+    private router: Router,
+    private searchBookService: SearchBookService
+  ) {}
 
   logout() {
     this.signInService.logout();
     this.router.navigate(['auth/sign-in']);
+  }
+
+  collapseMenu() {
+    this.isMenuCollapsed = true;
+    // setTimeout(() => {
+    // }, 100);
+  }
+
+  expandMenu() {
+    this.isMenuCollapsed = false;
   }
 }

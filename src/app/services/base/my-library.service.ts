@@ -10,4 +10,8 @@ export class MyLibraryService {
   public getUserLibraryBooks(): Observable<UserLibraryBook[]> {
     return this.apiLivrosProxyService.getUserLibraryBooks();
   }
+
+  public deleteBook(id: string): Observable<string> {
+    return this.apiLivrosProxyService.deleteUserBook(id);
+  }
 }

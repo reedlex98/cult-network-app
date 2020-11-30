@@ -49,6 +49,7 @@ export class SignUpFormComponent implements OnInit {
 
   signUp() {
     this.ngxLoader.start();
+    console.log(this.signUpForm.value);
     this.signUpService
       .signUp(this.signUpForm.value)
       .pipe(

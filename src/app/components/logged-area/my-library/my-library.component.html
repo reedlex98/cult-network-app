@@ -1,10 +1,11 @@
-<table class="table table-striped table-hover table-responsive" *ngIf="userLibraryBooks.length">
+<table class="table table-striped table-hover table-responsive" *ngIf="userLibraryBooks && userLibraryBooks.length">
   <thead>
     <tr>
       <th scope="col">ISBN</th>
       <th scope="col">Titulo</th>
       <th scope="col">Descricao</th>
       <th scope="col">Autores</th>
+      <th scope="col"></th>
     </tr>
   </thead>
   <tbody>
@@ -14,6 +15,11 @@
         <td>{{userLibraryBook.Titulo}}</td>
         <td>{{userLibraryBook.DescricaoLivro.slice(0, 50) + '...'}}</td>
         <td>{{userLibraryBook.Autor}}</td>
+        <td>
+          <button mdbBtn color="danger" block="true" (click)="deleteBook(userLibraryBook.Id)">
+            <fa-icon [icon]="faTrash"></fa-icon>
+          </button>
+        </td>
       </tr>
     </ng-container>
   </tbody>

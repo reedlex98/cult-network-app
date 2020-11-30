@@ -1,8 +1,11 @@
-export interface SignUpForm{
-  nome: string,
-  idade: number,
-  cidade: string,
-  email: string,
-  senha: string,
-  estado: string
+export interface SignUpForm {
+  nome: string;
+  senha: string;
+  email: string;
+  idade: number;
+  cidade: string;
+  endereco: string;
+  estado: string;
+  latitude: string;
+  longitude: string;
 }
