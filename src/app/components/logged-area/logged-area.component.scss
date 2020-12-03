@@ -2,8 +2,8 @@
   width: 300px;
   height: 100vh;
   position: fixed;
-  background: rgb(22, 18, 29);
-  color: #e5e4f0;
+  background: var(--cult-network-secondary);
+  color: var(--cult-network-light);
 
   transition: 0.1s all linear;
   a {
@@ -19,7 +19,7 @@
     font-size: 2em;
     font-weight: bold;
     .logo-dot {
-      color: #3bb370;
+      color: var(--cult-network-primary);
     }
   }
   .menu-options {
@@ -33,7 +33,7 @@
       height: 50px;
       transition: background 0.25s linear;
       &:hover {
-        background-color: #3bb370;
+        background-color: var(--cult-network-primary);
       }
       align-items: center;
       span {

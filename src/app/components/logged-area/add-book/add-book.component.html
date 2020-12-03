@@ -1,5 +1,5 @@
 <div class="add-book-container row w-100 mt-5">
-  <div class="add-book-form col-6">
+  <div class="add-book-form col-xs-12 col-lg-6">
     <form class="text-center border border-light p-5" [formGroup]="searchBookForm">
       <p class="h4 mb-4">Adicione um novo livro</p>
 
@@ -61,7 +61,7 @@
       </button>
     </form>
   </div>
-  <div class="col-6">
+  <div class="col-xs-12 col-lg-6">
     <form class="text-center border border-light p-5" (change)="onChange()" [formGroup]="addBookForm">
       <!-- ISBN -->
       <div class="form-row mb-4">

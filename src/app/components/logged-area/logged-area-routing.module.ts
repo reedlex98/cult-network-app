@@ -6,6 +6,7 @@ import { AddBookComponent } from './add-book/add-book.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoggedAreaComponent } from './logged-area.component';
 import { MyProfileComponent } from './my-profile/my-profile.component';
+import { SearchBookComponent } from './search-book/search-book.component';
 
 const routes: Routes = [
   {
@@ -32,6 +33,10 @@ const routes: Routes = [
       {
         path: 'my-profile',
         component: MyProfileComponent,
+      },
+      {
+        path: 'search-book',
+        component: SearchBookComponent,
       }
     ],
   },

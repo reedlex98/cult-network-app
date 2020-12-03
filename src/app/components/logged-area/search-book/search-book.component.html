@@ -1,0 +1,22 @@
+<div class="search-book-bar d-flex align-items-center justify-content-center px-3 mt-1">
+
+  <form class="text-center w-75" (change)="onChange()" [formGroup]="searchBookForm">
+    <div class="form-row">
+      <div class="col">
+        <input
+          type="text"
+          formControlName="searchTerm"
+          id="defaultFormSearcgTerm"
+          aria-describedby="defaultFormSearcgTermHelpBlock"
+          placeholder="Busque pelo título do livro ou nome do autor"
+          [ngClass]="{
+            'is-valid': searchBookForm.get('isbn').valid,
+            'is-invalid':
+              !searchBookForm.get('isbn').valid && searchBookForm.get('isbn').touched
+          }"
+          class="form-control"
+        />
+      </div>
+    </div>
+  </form>
+</div>

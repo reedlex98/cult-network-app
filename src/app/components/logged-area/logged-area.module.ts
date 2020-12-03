@@ -1,3 +1,4 @@
+import { SearchBookComponent } from './search-book/search-book.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 // Modules
 import { NgModule } from '@angular/core';
@@ -27,7 +28,8 @@ import { SearchBookService } from 'src/app/services/base/search-book.service';
     DashboardComponent,
     AddBookComponent,
     MyLibraryComponent,
-    MyProfileComponent
+    MyProfileComponent,
+    SearchBookComponent
   ],
   imports: [
     CommonModule,
