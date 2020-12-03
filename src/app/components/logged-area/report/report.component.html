@@ -1,0 +1,94 @@
+<div class="add-book-container row w-100 mt-5">
+  <div class="report-form col">
+    <form class="text-center border border-light p-5" [formGroup]="reportForm">
+      <p class="h4 mb-4">Efetue sua denúncia</p>
+
+      <p class="text-center mb-4">
+        Durante a utilização da plataforma, caso você tenha notado que algum
+        usuário se comportou de maneira inadequada, não exite! Utilize esse
+        canal para efetuar a sua denúncia e eventualmente entraremos em contato
+        buscando solucionar a questão
+      </p>
+
+      <!-- Email denunciado -->
+      <div class="form-row mb-4">
+        <input
+          type="text"
+          formControlName="reportedEmail"
+          id="defaultRegisterFormreportedEmail"
+          aria-describedby="defaultRegisterFormreportedEmailHelpBlock"
+          [ngClass]="{
+            'is-valid': reportForm.get('reportedEmail').valid,
+            'is-invalid':
+              !reportForm.get('reportedEmail').valid &&
+              reportForm.get('reportedEmail').touched
+          }"
+          class="form-control"
+          placeholder="Email denunciado"
+        />
+        <div class="mt-1 w-100 d-flex flex-column align-items-center">
+          <ng-container *ngFor="let error of errorMessages.reportedEmail">
+            <small
+              class="d-block text-danger"
+              id="defaultRegisterFormreportedEmailHelpBlock"
+              *ngIf="
+                reportForm.get('reportedEmail').hasError(error.type) &&
+                (reportForm.get('reportedEmail').dirty ||
+                  reportForm.get('reportedEmail').touched)
+              "
+            >
+              {{ error.reportedEmail }}
+            </small>
+          </ng-container>
+        </div>
+      </div>
+
+      <!-- Mensagem -->
+      <div class="form-row mb-4">
+        <textarea
+          type="textarea"
+          rows="5"
+          style="resize: none;"
+          formControlName="message"
+          id="defaultRegisterFormmessage"
+          aria-describedby="defaultRegisterFormmessageHelpBlock"
+          [ngClass]="{
+            'is-valid': reportForm.get('message').valid,
+            'is-invalid':
+              !reportForm.get('message').valid &&
+              reportForm.get('message').touched
+          }"
+          class="form-control"
+          placeholder="Descrição do ocorrido"
+        ></textarea>
+        <div class="mt-1 w-100 d-flex flex-column align-items-center">
+          <ng-container *ngFor="let error of errorMessages.message">
+            <small
+              class="d-block text-danger"
+              id="defaultRegisterFormmessageHelpBlock"
+              *ngIf="
+                reportForm.get('message').hasError(error.type) &&
+                (reportForm.get('message').dirty ||
+                  reportForm.get('message').touched)
+              "
+            >
+              {{ error.message }}
+            </small>
+          </ng-container>
+        </div>
+      </div>
+
+      <!-- Sign up button -->
+      <button
+        (click)="sendReport()"
+        [disabled]="!reportForm.valid"
+        mdbBtn
+        color="danger"
+        block="true"
+        class="my-4"
+      >
+        Denunciar usuario
+      </button>
+    </form>
+  </div>
+</div>

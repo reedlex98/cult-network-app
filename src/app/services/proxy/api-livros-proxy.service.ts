@@ -1,3 +1,4 @@
+import { ReportResponse } from './../dto/report.response';
 import { GetUserResponse } from './../dto/get-user.response';
 import { UserLibraryBook } from './../dto/user-library-book';
 // Dependencies
@@ -12,8 +13,6 @@ import { SignUpForm } from '../dto/sign-up-form';
 import { SignInForm } from '../dto/sign-in-form';
 import { DefaultResponse } from '../dto/default.response';
 import { SearchBookResponse } from '../dto/search-book.response';
-import { title } from 'process';
-
 const BASE_URL = 'http://apitrocalivros.gear.host/api';
 
 @Injectable()
@@ -27,11 +26,11 @@ export class ApiLivrosProxyService {
     );
   }
 
-  getBookByAuthor(autor: string): Observable<UserLibraryBook[]>{
+  getBookByAuthor(autor: string): Observable<UserLibraryBook[]> {
     return this.httpClient.post<SearchBookResponse[]>(
       `${BASE_URL}/cn/livro/getLivroAutor`,
       {
-        autor
+        autor,
       }
     );
   }
@@ -42,6 +41,15 @@ export class ApiLivrosProxyService {
       {
         titulo,
       }
+    );
+  }
+
+  sendReport(message: string, reportedEmail: string) {
+    return this.httpClient.post<ReportResponse>(
+      `${BASE_URL}/livros/EnviarEmailDenuncia/${encodeURI(
+        message
+      )}?emailUser«${reportedEmail}`,
+      {}
     );
   }
 

@@ -12,7 +12,6 @@ import { ServicesModule } from 'src/app/services/services.module';
 // Components
 import { LoggedAreaComponent } from './logged-area.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
-import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { CommonModule } from '@angular/common';
 import { AddBookComponent } from './add-book/add-book.component';
 import { AddBookService } from 'src/app/services/base/add-book.service';
@@ -21,6 +20,8 @@ import { MyLibraryService } from 'src/app/services/base/my-library.service';
 import { MyProfileComponent } from './my-profile/my-profile.component';
 import { MyProfileService } from 'src/app/services/base/my-profile.service';
 import { SearchBookService } from 'src/app/services/base/search-book.service';
+import { ReportComponent } from './report/report.component';
+import { ReportService } from 'src/app/services/base/report.service';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { SearchBookService } from 'src/app/services/base/search-book.service';
     AddBookComponent,
     MyLibraryComponent,
     MyProfileComponent,
-    SearchBookComponent
+    SearchBookComponent,
+    ReportComponent
   ],
   imports: [
     CommonModule,
@@ -44,7 +46,8 @@ import { SearchBookService } from 'src/app/services/base/search-book.service';
     AddBookService,
     MyLibraryService,
     MyProfileService,
-    SearchBookService
+    SearchBookService,
+    ReportService
   ],
   bootstrap: [LoggedAreaComponent],
 })

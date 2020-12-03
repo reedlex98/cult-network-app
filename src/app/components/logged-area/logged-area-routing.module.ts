@@ -7,6 +7,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoggedAreaComponent } from './logged-area.component';
 import { MyProfileComponent } from './my-profile/my-profile.component';
 import { SearchBookComponent } from './search-book/search-book.component';
+import { ReportComponent } from './report/report.component';
 
 const routes: Routes = [
   {
@@ -37,6 +38,10 @@ const routes: Routes = [
       {
         path: 'search-book',
         component: SearchBookComponent,
+      },
+      {
+        path: 'report',
+        component: ReportComponent,
       }
     ],
   },
