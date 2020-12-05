@@ -1,6 +1,44 @@
-.search-book-bar{
+.search-book-bar {
   width: 100%;
-  border: 1px solid black;
-  height: 50px;
+  height: 75px;
   background: var(--cult-network-secondary);
+  color: var(--cult-network-light);
+
+  label {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  #defaultFormSearchTerm {
+    max-width: 370px;
+  }
+
+  #defaultFormMaxDistance {
+    max-width: 200px;
+  }
+}
+
+.search-results {
+  width: 100%;
+  .search-book-container {
+    display: flex;
+    align-items: center;
+    border: 1px solid black;
+    background: var(--cult-network-secondary);
+    color: var(--cult-network-light);
+    .search-book-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .conversation-button {
+      border-radius: 100%;
+      width: 50px;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      height: 50px;
+      align-items: center;
+    }
+  }
 }

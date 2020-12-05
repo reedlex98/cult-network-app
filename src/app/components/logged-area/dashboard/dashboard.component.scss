@@ -1,8 +1,15 @@
 .dashboard{
-  /* width: 75vw; */
-  max-width: 1000px;
-  /* border: 1px solid black; */
-  margin-left: 325px;
-  height: 100vh;
-  max-height: 100vh;
+  height: 90vh;
+  .cult-network-logo {
+    margin-bottom: 50px;
+    font-size: 5em;
+    font-weight: bold;
+    .logo-dot {
+      color: var(--cult-network-primary);
+    }
+  }
+  .description{
+    width: 500px;
+    text-align: center;
+  }
 }

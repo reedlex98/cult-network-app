@@ -34,6 +34,18 @@ export class ReportService {
         type: 'required',
         message: 'Campo obrigatório',
       },
+      {
+        type: 'minlength',
+        message: 'O campo deve ter no mínimo 6 caracteres',
+      },
+      {
+        type: 'maxlength',
+        message: 'O campo deve ter no máximo 60 caracteres',
+      },
+      {
+        type: 'pattern',
+        message: 'O formato de email digitado não é válido',
+      },
     ],
   };
 
@@ -52,7 +64,12 @@ export class ReportService {
       ),
       reportedEmail: new FormControl(
         '',
-        Validators.compose([Validators.required])
+        Validators.compose([
+          Validators.required,
+          Validators.minLength(6),
+          Validators.maxLength(60),
+          Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}'),
+        ])
       ),
     });
     return this.reportForm;

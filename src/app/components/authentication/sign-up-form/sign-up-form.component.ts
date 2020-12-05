@@ -41,6 +41,8 @@ export class SignUpFormComponent implements OnInit {
           latitude: this.userPosition.coords.latitude,
           longitude: this.userPosition.coords.longitude,
         });
+        this.signUpForm.get('latitude').disable();
+        this.signUpForm.get('longitude').disable();
       });
     } else {
       alert('Geolocation is not supported by this browser.');
@@ -49,6 +51,8 @@ export class SignUpFormComponent implements OnInit {
 
   signUp() {
     this.ngxLoader.start();
+    this.signUpForm.get('latitude').enable();
+    this.signUpForm.get('longitude').enable();
     console.log(this.signUpForm.value);
     this.signUpService
       .signUp(this.signUpForm.value)
@@ -67,6 +71,8 @@ export class SignUpFormComponent implements OnInit {
               positionClass: 'toast-top-full-width',
             }
           );
+          this.signUpForm.get('latitude').disable();
+          this.signUpForm.get('longitude').disable();
           this.router.navigateByUrl('auth/sign-in');
         },
         (err) => {

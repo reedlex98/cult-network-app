@@ -22,6 +22,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { GlobalHttpErrorHandlingInterceptorService } from './shared/helpers/global-http-error-handling.interceptor';
 import { PageNotFoundComponent } from './shared/components/pageNotFound/page-not-found.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
+// import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [

@@ -34,6 +34,16 @@ export class SignUpService {
         message: 'O campo deve ter no máximo 60 caracteres',
       },
     ],
+    celular: [
+      {
+        type: 'required',
+        message: 'Campo obrigatório',
+      },
+      {
+        type: 'minlength',
+        message: 'O campo deve ter no mínimo 11 caracteres',
+      }
+    ],
     cidade: [
       {
         type: 'required',
@@ -161,6 +171,13 @@ export class SignUpService {
         Validators.compose([
           Validators.required,
           // Validators.pattern('[a-zA-Z]'),
+        ])
+      ),
+      celular: new FormControl(
+        '',
+        Validators.compose([
+          Validators.required,
+          Validators.minLength(11),
         ])
       ),
       senha: new FormControl(

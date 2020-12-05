@@ -11,6 +11,7 @@
   },
   "private": true,
   "dependencies": {
+    "@agm/core": "^3.0.0-beta.0",
     "@angular/animations": "^9.1.12",
     "@angular/cdk": "^10.2.6",
     "@angular/common": "~9.1.12",
@@ -32,6 +33,7 @@
     "animate.css": "^4.1.1",
     "bootstrap": "^4.5.3",
     "chart.js": "^2.5.0",
+    "geodist": "^0.2.1",
     "hammerjs": "^2.0.8",
     "isbn-validate": "^1.0.3",
     "mdbootstrap": "^4.19.1",

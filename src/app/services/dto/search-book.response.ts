@@ -13,4 +13,6 @@ export interface SearchBookResponse {
   LongitudeUsuarioLivro: string;
   DataEdicao: string;
   DataRegistro: string;
+  Distancia?: number;
+  UsuarioNome?: string;
 }

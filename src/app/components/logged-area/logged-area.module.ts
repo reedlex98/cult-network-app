@@ -22,6 +22,7 @@ import { MyProfileService } from 'src/app/services/base/my-profile.service';
 import { SearchBookService } from 'src/app/services/base/search-book.service';
 import { ReportComponent } from './report/report.component';
 import { ReportService } from 'src/app/services/base/report.service';
+// import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,9 @@ import { ReportService } from 'src/app/services/base/report.service';
     LoggedAreaRoutingModule,
     FontAwesomeModule,
     MDBBootstrapModule.forRoot(),
+    // AgmCoreModule.forRoot({
+    //   apiKey: 'AIzaSyBr9sdnBaGKzJEHCns0Uqda42q4ZvS4KNU'
+    // }),
   ],
   providers: [
     AddBookService,

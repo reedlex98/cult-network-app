@@ -1,22 +1,147 @@
-<div class="search-book-bar d-flex align-items-center justify-content-center px-3 mt-1">
-
-  <form class="text-center w-75" (change)="onChange()" [formGroup]="searchBookForm">
-    <div class="form-row">
-      <div class="col">
+<div
+  class="search-book-bar d-flex align-items-center justify-content-center px-3 mt-1"
+>
+  <form
+    class="text-center w-100 d-flex justify-content-center align-items-center"
+    (change)="onChange()"
+    [formGroup]="searchBookForm"
+  >
+    <div class="form-row w-100">
+      <div class="col d-flex align-items-center justify-content-center">
+        <label for="defaultFormSearchTerm">Busca: </label>
         <input
           type="text"
           formControlName="searchTerm"
-          id="defaultFormSearcgTerm"
-          aria-describedby="defaultFormSearcgTermHelpBlock"
+          id="defaultFormSearchTerm"
+          aria-describedby="defaultFormSearchTermHelpBlock"
           placeholder="Busque pelo título do livro ou nome do autor"
-          [ngClass]="{
-            'is-valid': searchBookForm.get('isbn').valid,
-            'is-invalid':
-              !searchBookForm.get('isbn').valid && searchBookForm.get('isbn').touched
-          }"
-          class="form-control"
+          class="form-control ml-3"
         />
+      </div>
+      <div class="col d-flex align-items-center justify-content-center">
+        <label for="defaultFormMaxDistance">Distância máxima, em Km: </label>
+        <input
+          type="number"
+          formControlName="maxDistance"
+          id="defaultFormMaxDistance"
+          aria-describedby="defaultFormMaxDistanceHelpBlock"
+          class="form-control ml-3"
+        />
+      </div>
+      <div class="col-2">
+        <button
+          (click)="searchBook()"
+          [disabled]="!searchBookForm.valid"
+          mdbBtn
+          color="success"
+          block="true"
+          class="my-4"
+        >
+          <fa-icon [icon]="faSearch"></fa-icon>
+          <span> Buscar </span>
+        </button>
       </div>
     </div>
   </form>
+
+  <!-- <agm-map *ngIf="userData" [latitude]="userData.Latitude" [longitude]="userData.Longitude">
+  </agm-map> -->
+</div>
+
+<div class="search-results px-3">
+  <ng-container
+    *ngIf="resultsWithCoordinates.length || resultsWithoutCoordinates.length"
+  >
+    <ng-container *ngFor="let book of resultsWithCoordinates">
+      <div
+        class="search-book-container my-3 py-3 row justify-content-around d-flex align-items-center"
+      >
+        <div class="search-book-info col-9 d-flex flex-column">
+          <span class="h4">
+            {{ book.Titulo }}
+          </span>
+          <span> <strong>Autores:</strong> {{ book.Autor }} </span>
+          <span> <strong>ISBN:</strong> {{ book.Isbn }} </span>
+          <span *ngIf="book.Distancia || book.Distancia >= 0">
+            <strong>Distância:</strong> {{ book.Distancia }} Km
+          </span>
+          <span>
+            <strong>Descricao:</strong>
+            {{ book.DescricaoLivro.slice(0, 500) + "..." }}</span
+          >
+          <span class="text-success">
+            Disponível no acervo de <strong>{{ book.UsuarioNome }}</strong>
+          </span>
+          <span class="text-success" *ngIf="book.EnderecoUsuarioLivro">
+            <strong>Endereço:</strong> {{ book.EnderecoUsuarioLivro }}</span
+          >
+        </div>
+        <div class="col-1 d-flex flex-column">
+          <button
+            (click)="openChat(book.CelularUsuarioLivro)"
+            [disabled]="!searchBookForm.valid"
+            mdbBtn
+            color="success"
+            block="true"
+            class="conversation-button"
+          >
+            <fa-icon [icon]="faWhatsapp" class="fa-lg"></fa-icon>
+          </button>
+          <span class="text-success mt-3"> Conversar </span>
+        </div>
+      </div>
+    </ng-container>
+
+    <ng-container *ngFor="let book of resultsWithoutCoordinates">
+      <div
+        class="search-book-container my-3 py-3 row justify-content-around d-flex align-items-center"
+      >
+        <div class="search-book-info col-9 d-flex flex-column">
+          <span class="h4">
+            {{ book.Titulo }}
+          </span>
+          <span> <strong>Autores:</strong> {{ book.Autor }} </span>
+          <span> <strong>ISBN:</strong> {{ book.Isbn }} </span>
+          <span *ngIf="book.Distancia || book.Distancia >= 0">
+            <strong>Distância:</strong> {{ book.Distancia }} Km
+          </span>
+          <span>
+            <strong>Descricao:</strong>
+            {{ book.DescricaoLivro.slice(0, 500) + "..." }}</span
+          >
+          <span class="text-success">
+            Disponível no acervo de <strong>{{ book.UsuarioNome }}</strong>
+          </span>
+          <span class="text-success" *ngIf="book.EnderecoUsuarioLivro">
+            <strong>Endereço:</strong> {{ book.EnderecoUsuarioLivro }}</span
+          >
+        </div>
+        <div class="col-1 d-flex flex-column">
+          <button
+            (click)="openChat(book.CelularUsuarioLivro)"
+            [disabled]="!searchBookForm.valid"
+            mdbBtn
+            color="success"
+            block="true"
+            class="conversation-button"
+          >
+            <fa-icon [icon]="faWhatsapp" class="fa-lg"></fa-icon>
+          </button>
+          <span class="text-success mt-3"> Conversar </span>
+        </div>
+      </div>
+    </ng-container>
+  </ng-container>
+
+  <ng-container
+    *ngIf="!resultsWithCoordinates.length && !resultsWithoutCoordinates.length"
+  >
+    <div
+      class="description my-5 mx-auto w-75 d-flex justify-content-center align-items-center text-center"
+    >
+      Utilize os campos acima para fazer sua pesquisa, os resultados aparecerão
+      seguida. Caso encontre algum resultado que te interesse, clique no ícone
+      de Whatsapp para iniciar sua interação .
+    </div>
+  </ng-container>
 </div>

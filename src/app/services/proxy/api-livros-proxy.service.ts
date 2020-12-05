@@ -26,6 +26,36 @@ export class ApiLivrosProxyService {
     );
   }
 
+  getUserById(idUser: string): Observable<GetUserResponse> {
+    return this.httpClient.post<GetUserResponse>(
+      `${BASE_URL}/cn/getUsuarioPorID`,
+      null,
+      {
+        params: {
+          idUser
+        },
+      }
+    );
+  }
+
+
+  // getUserById(idUser: string): Observable<GetUserResponse> {
+  //   const headers = new HttpHeaders();
+  //   headers.append('Content-Type', 'application/x-www-form-urlencoded');
+
+  //   const urlSearchParams = new URLSearchParams();
+  //   urlSearchParams.set('grant_type', 'password');
+  //   urlSearchParams.set('username', signInForm.username);
+  //   urlSearchParams.set('password', signInForm.password);
+
+  //   const body = urlSearchParams.toString();
+
+  //   return this.httpClient.post<GetUserResponse>(
+  //     `${BASE_URL}/cn/access/login`, null,
+  //   );
+  // }
+
+
   getBookByAuthor(autor: string): Observable<UserLibraryBook[]> {
     return this.httpClient.post<SearchBookResponse[]>(
       `${BASE_URL}/cn/livro/getLivroAutor`,
@@ -41,6 +71,12 @@ export class ApiLivrosProxyService {
       {
         titulo,
       }
+    );
+  }
+
+  getUserList(): Observable<GetUserResponse[]> {
+    return this.httpClient.get<GetUserResponse[]>(
+      `${BASE_URL}/cn/listarUsuarios`
     );
   }
 

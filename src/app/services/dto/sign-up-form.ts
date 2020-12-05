@@ -4,6 +4,7 @@ export interface SignUpForm {
   email: string;
   idade: number;
   cidade: string;
+  celular: string;
   endereco: string;
   estado: string;
   latitude: string;

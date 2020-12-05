@@ -1,98 +1,142 @@
 <!-- Default form register -->
 <form class="text-center border border-light p-5" [formGroup]="signUpForm">
   <p class="h4 mb-4">Crie uma nova conta</p>
+  <span
+    class="mb-3"
+    *ngIf="
+      !signUpForm.get('latitude').value || !signUpForm.get('longitude').value
+    "
+    >Para que o sistema funcione da maneira esperada, precisamos que você nos
+    permita acessar as suas latitude e longitude. Para isso, pedimos que aceite o
+    popup que está aparecendo no canto superior esquerdo da tela</span
+  >
 
-  <!-- Nome -->
-  <div class="form-row mb-4">
-    <input
-      type="text"
-      formControlName="nome"
-      id="defaultRegisterFormName"
-      aria-describedby="defaultRegisterFormNameHelpBlock"
-      [ngClass]="{
-        'is-valid': signUpForm.get('nome').valid,
-        'is-invalid':
-          !signUpForm.get('nome').valid && signUpForm.get('nome').touched
-      }"
-      class="form-control"
-      placeholder="Nome de usuário"
-    />
-    <div class="mt-1 w-100 d-flex flex-column align-items-center">
-      <ng-container *ngFor="let error of errorMessages.nome">
-        <small
-          class="d-block text-danger"
-          id="defaultRegisterFormNameHelpBlock"
-          *ngIf="
-            signUpForm.get('nome').hasError(error.type) &&
-            (signUpForm.get('nome').dirty || signUpForm.get('nome').touched)
-          "
-        >
-          {{ error.message }}
-        </small>
-      </ng-container>
+  <div class="form-row my-4">
+    <!-- Nome -->
+    <div class="col">
+      <input
+        type="text"
+        formControlName="nome"
+        id="defaultRegisterFormName"
+        aria-describedby="defaultRegisterFormNameHelpBlock"
+        [ngClass]="{
+          'is-valid': signUpForm.get('nome').valid,
+          'is-invalid':
+            !signUpForm.get('nome').valid && signUpForm.get('nome').touched
+        }"
+        class="form-control"
+        placeholder="Nome de usuário"
+      />
+      <div class="mt-1 w-100 d-flex flex-column align-items-center">
+        <ng-container *ngFor="let error of errorMessages.nome">
+          <small
+            class="d-block text-danger"
+            id="defaultRegisterFormNameHelpBlock"
+            *ngIf="
+              signUpForm.get('nome').hasError(error.type) &&
+              (signUpForm.get('nome').dirty || signUpForm.get('nome').touched)
+            "
+          >
+            {{ error.message }}
+          </small>
+        </ng-container>
+      </div>
+    </div>
+    <!-- Celular -->
+    <div class="col">
+      <input
+        type="tel"
+        formControlName="celular"
+        id="defaultRegisterFormCelular"
+        aria-describedby="defaultRegisterFormCelularHelpBlock"
+        [ngClass]="{
+          'is-valid': signUpForm.get('celular').valid,
+          'is-invalid':
+            !signUpForm.get('celular').valid &&
+            signUpForm.get('celular').touched
+        }"
+        class="form-control"
+        placeholder="Celular com DDD"
+      />
+      <div class="mt-1 w-100 d-flex flex-column align-items-center">
+        <ng-container *ngFor="let error of errorMessages.celular">
+          <small
+            class="d-block text-danger"
+            id="defaultRegisterFormCelularHelpBlock"
+            *ngIf="
+              signUpForm.get('celular').hasError(error.type) &&
+              (signUpForm.get('celular').dirty ||
+                signUpForm.get('celular').touched)
+            "
+          >
+            {{ error.message }}
+          </small>
+        </ng-container>
+      </div>
     </div>
   </div>
 
-  <!-- Idade -->
   <div class="form-row mb-4">
-    <input
-      type="number"
-      min="12"
-      formControlName="idade"
-      id="defaultRegisterFormAge"
-      aria-describedby="defaultRegisterFormAgeHelpBlock"
-      [ngClass]="{
-        'is-valid': signUpForm.get('idade').valid,
-        'is-invalid':
-          !signUpForm.get('idade').valid && signUpForm.get('idade').touched
-      }"
-      class="form-control"
-      placeholder="Idade"
-    />
-    <div class="mt-1 w-100 d-flex flex-column align-items-center">
-      <ng-container *ngFor="let error of errorMessages.idade">
-        <small
-          class="d-block text-danger"
-          id="defaultRegisterFormAgeHelpBlock"
-          *ngIf="
-            signUpForm.get('idade').hasError(error.type) &&
-            (signUpForm.get('idade').dirty || signUpForm.get('idade').touched)
-          "
-        >
-          {{ error.message }}
-        </small>
-      </ng-container>
+    <!-- Idade -->
+    <div class="col">
+      <input
+        type="number"
+        min="12"
+        formControlName="idade"
+        id="defaultRegisterFormAge"
+        aria-describedby="defaultRegisterFormAgeHelpBlock"
+        [ngClass]="{
+          'is-valid': signUpForm.get('idade').valid,
+          'is-invalid':
+            !signUpForm.get('idade').valid && signUpForm.get('idade').touched
+        }"
+        class="form-control"
+        placeholder="Idade"
+      />
+      <div class="mt-1 w-100 d-flex flex-column align-items-center">
+        <ng-container *ngFor="let error of errorMessages.idade">
+          <small
+            class="d-block text-danger"
+            id="defaultRegisterFormAgeHelpBlock"
+            *ngIf="
+              signUpForm.get('idade').hasError(error.type) &&
+              (signUpForm.get('idade').dirty || signUpForm.get('idade').touched)
+            "
+          >
+            {{ error.message }}
+          </small>
+        </ng-container>
+      </div>
     </div>
-  </div>
-
-  <!-- E-mail -->
-  <div class="form-row mb-4">
-    <input
-      type="email"
-      formControlName="email"
-      id="defaultRegisterFormEmail"
-      aria-describedby="defaultRegisterFormEmailHelpBlock"
-      [ngClass]="{
-        'is-valid': signUpForm.get('email').valid,
-        'is-invalid':
-          !signUpForm.get('email').valid && signUpForm.get('email').touched
-      }"
-      class="form-control"
-      placeholder="E-mail"
-    />
-    <div class="mt-1 w-100 d-flex flex-column align-items-center">
-      <ng-container *ngFor="let error of errorMessages.email">
-        <small
-          id="defaultRegisterFormEmailHelpBlock"
-          class="d-block text-danger"
-          *ngIf="
-            signUpForm.get('email').hasError(error.type) &&
-            (signUpForm.get('email').dirty || signUpForm.get('email').touched)
-          "
-        >
-          {{ error.message }}
-        </small>
-      </ng-container>
+    <!-- E-mail -->
+    <div class="col">
+      <input
+        type="email"
+        formControlName="email"
+        id="defaultRegisterFormEmail"
+        aria-describedby="defaultRegisterFormEmailHelpBlock"
+        [ngClass]="{
+          'is-valid': signUpForm.get('email').valid,
+          'is-invalid':
+            !signUpForm.get('email').valid && signUpForm.get('email').touched
+        }"
+        class="form-control"
+        placeholder="E-mail"
+      />
+      <div class="mt-1 w-100 d-flex flex-column align-items-center">
+        <ng-container *ngFor="let error of errorMessages.email">
+          <small
+            id="defaultRegisterFormEmailHelpBlock"
+            class="d-block text-danger"
+            *ngIf="
+              signUpForm.get('email').hasError(error.type) &&
+              (signUpForm.get('email').dirty || signUpForm.get('email').touched)
+            "
+          >
+            {{ error.message }}
+          </small>
+        </ng-container>
+      </div>
     </div>
   </div>
 
@@ -208,6 +252,69 @@
           <option [value]="uf.value">{{ uf.name }}</option>
         </ng-container>
       </select>
+    </div>
+  </div>
+
+
+  <div class="form-row my-4" *ngIf="signUpForm.get('latitude').value || signUpForm.get('longitude').value">
+    <div class="col">
+
+      <div class="row mb-3">
+        <span>
+          Abaixo estão os seus dados referentes a localização, utilizaremos futuramente quando você for trocar livros com outras pessoas
+        </span>
+      </div>
+      <div class="row">
+        <!-- Latitude -->
+        <div class="col">
+          <input
+            type="text"
+            formControlName="latitude"
+            id="defaultRegisterFormLatitude"
+            aria-describedby="defaultRegisterFormLatitudeHelpBlock"
+            class="form-control"
+          />
+          <div class="mt-1 w-100 d-flex flex-column align-items-center">
+            <ng-container *ngFor="let error of errorMessages.latitude">
+              <small
+                class="d-block text-danger"
+                id="defaultRegisterFormLatitudeHelpBlock"
+                *ngIf="
+                  signUpForm.get('latitude').hasError(error.type) &&
+                  (signUpForm.get('latitude').dirty || signUpForm.get('latitude').touched)
+                "
+              >
+                {{ error.message }}
+              </small>
+            </ng-container>
+          </div>
+        </div>
+        <!-- Longitude -->
+        <div class="col">
+          <input
+            type="tel"
+            formControlName="longitude"
+            id="defaultRegisterFormLongitude"
+            aria-describedby="defaultRegisterFormLongitudeHelpBlock"
+            class="form-control"
+          />
+          <div class="mt-1 w-100 d-flex flex-column align-items-center">
+            <ng-container *ngFor="let error of errorMessages.longitude">
+              <small
+                class="d-block text-danger"
+                id="defaultRegisterFormLongitudeHelpBlock"
+                *ngIf="
+                  signUpForm.get('longitude').hasError(error.type) &&
+                  (signUpForm.get('longitude').dirty ||
+                    signUpForm.get('longitude').touched)
+                "
+              >
+                {{ error.message }}
+              </small>
+            </ng-container>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 

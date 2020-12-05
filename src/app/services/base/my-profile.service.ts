@@ -153,6 +153,10 @@ export class MyProfileService {
     return this.ufService.getListState();
   }
 
+  getUserData(): Observable<GetUserResponse> {
+    return this.apiLivrosProxyService.getUserData();
+  }
+
   public getUpdateProfileForm(): FormGroup {
     this.updateProfileForm = this.formBuilder.group({
       nome: new FormControl(
@@ -170,12 +174,7 @@ export class MyProfileService {
           // Validators.pattern('[a-zA-Z]'),
         ])
       ),
-      senha: new FormControl(
-        '',
-        Validators.compose([
-          Validators.required
-        ])
-      ),
+      senha: new FormControl('', Validators.compose([Validators.required])),
       endereco: new FormControl(
         '',
         Validators.compose([
