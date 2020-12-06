@@ -38,24 +38,6 @@ export class ApiLivrosProxyService {
     );
   }
 
-
-  // getUserById(idUser: string): Observable<GetUserResponse> {
-  //   const headers = new HttpHeaders();
-  //   headers.append('Content-Type', 'application/x-www-form-urlencoded');
-
-  //   const urlSearchParams = new URLSearchParams();
-  //   urlSearchParams.set('grant_type', 'password');
-  //   urlSearchParams.set('username', signInForm.username);
-  //   urlSearchParams.set('password', signInForm.password);
-
-  //   const body = urlSearchParams.toString();
-
-  //   return this.httpClient.post<GetUserResponse>(
-  //     `${BASE_URL}/cn/access/login`, null,
-  //   );
-  // }
-
-
   getBookByAuthor(autor: string): Observable<UserLibraryBook[]> {
     return this.httpClient.post<SearchBookResponse[]>(
       `${BASE_URL}/cn/livro/getLivroAutor`,

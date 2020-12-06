@@ -41,10 +41,7 @@ import { ReportService } from 'src/app/services/base/report.service';
     ServicesModule,
     LoggedAreaRoutingModule,
     FontAwesomeModule,
-    MDBBootstrapModule.forRoot(),
-    // AgmCoreModule.forRoot({
-    //   apiKey: 'AIzaSyBr9sdnBaGKzJEHCns0Uqda42q4ZvS4KNU'
-    // }),
+    MDBBootstrapModule.forRoot()
   ],
   providers: [
     AddBookService,

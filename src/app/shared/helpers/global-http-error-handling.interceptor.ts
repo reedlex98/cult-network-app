@@ -40,7 +40,6 @@ export class GlobalHttpErrorHandlingInterceptorService
           );
         }
 
-        console.log('intercepting error');
         if (
           err.status === 401 &&
           request.url.includes('http://apitrocalivros.gear.host/api')

@@ -53,7 +53,6 @@ export class SignUpFormComponent implements OnInit {
     this.ngxLoader.start();
     this.signUpForm.get('latitude').enable();
     this.signUpForm.get('longitude').enable();
-    console.log(this.signUpForm.value);
     this.signUpService
       .signUp(this.signUpForm.value)
       .pipe(
