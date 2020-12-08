@@ -51,9 +51,9 @@ export class MyProfileComponent implements OnInit {
     this.ngxLoader.start();
     this.myProfileService.getPreviousProfileData().subscribe((res) => {
       this.ngxLoader.stop();
-      this.updateProfileForm = this.myProfileService.patchGetUserResponseValueToForm(
-        res
-      );
+      // this.updateProfileForm = this.myProfileService.patchGetUserResponseValueToForm(
+      //   res
+      // );
       this.updateProfileForm.disable();
     });
   }

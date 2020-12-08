@@ -80,7 +80,9 @@
     <!-- Idade -->
     <div class="col">
       <input
-        type="number"
+        onfocus="(this.type='date')"
+        onblur="(this.type='text')"
+        type="text"
         min="12"
         formControlName="idade"
         id="defaultRegisterFormAge"
@@ -91,7 +93,7 @@
             !signUpForm.get('idade').valid && signUpForm.get('idade').touched
         }"
         class="form-control"
-        placeholder="Idade"
+        placeholder="Data de nascimento"
       />
       <div class="mt-1 w-100 d-flex flex-column align-items-center">
         <ng-container *ngFor="let error of errorMessages.idade">

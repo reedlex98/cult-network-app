@@ -54,9 +54,11 @@
   <div class="form-row mb-4">
     <div class="col">
       <label
-      class="w-100 text-left" for="defaultRegisterFormAge">Idade</label>
+      class="w-100 text-left" for="defaultRegisterFormAge">Data de nascimento</label>
       <input
-        type="number"
+        onfocus="(this.type='date')"
+        onblur="(this.type='text')"
+        type="text"
         min="12"
         formControlName="idade"
         id="defaultRegisterFormAge"
@@ -69,7 +71,7 @@
             updateProfileForm.get('idade').touched
         }"
         class="form-control"
-        placeholder="Idade"
+        placeholder="Data de nascimento"
       />
       <div class="mt-1 w-100 d-flex flex-column align-items-center">
         <ng-container *ngFor="let error of errorMessages.idade">
